@@ -1,0 +1,29 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section<
+  \title<レイアウトテスト>
+
+  \wrong<
+    \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
+  >
+  \correct<
+    \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
+    \ja<すいません、5000 兆円はどこにありますか?>
+  >
+
+  \content<
+    \p<
+      Здравствуйте!
+      Ça va?
+      Σημεῖόν ἐστιν, οὗ μέρος οὐθέν.
+      The fluffy fjord is difficult to find.
+    >
+    \p<
+      文中には {dojat e tel} のようにシャレイア語が挟まることがありますが、ここでフォントを変えます。
+      {salat a} [/S/] {e} [/Z/] のように、イタリックにするコマンドにも対応しているはずです。
+      変わっているか確認してください。
+    >
+  >
+
+>

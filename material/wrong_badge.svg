@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="14.689198mm"
+   height="12.304413mm"
+   viewBox="0 0 14.689198 12.304413"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="wrong_box.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="11.313708"
+     inkscape:cx="37.672392"
+     inkscape:cy="24.698868"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g836"
+     showgrid="true"
+     units="mm"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:snap-bbox="false"
+     inkscape:object-paths="true"
+     inkscape:snap-intersection-paths="true"
+     inkscape:snap-smooth-nodes="true"
+     inkscape:snap-midpoints="true"
+     inkscape:snap-text-baseline="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3699"
+       units="mm"
+       spacingx="0.1"
+       spacingy="0.1"
+       enabled="true"
+       originx="-1.7126523"
+       originy="0.61134256" />
+    <inkscape:grid
+       type="axonomgrid"
+       id="grid3703"
+       units="mm"
+       empspacing="5"
+       color="#ff3f3f"
+       opacity="0.1254902"
+       empcolor="#ff3f3f"
+       empopacity="0.25098039"
+       enabled="false"
+       originx="1.2873478"
+       originy="3.6113426" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-1.7126522,-285.30693)">
+    <g
+       id="g831">
+      <g
+         id="g836"
+         transform="translate(-1.5213542,-0.396875)">
+        <g
+           transform="rotate(-20,47.927115,284.94268)"
+           id="g841-0">
+          <path
+             sodipodi:nodetypes="cscscscscscscscsc"
+             inkscape:connector-curvature="0"
+             id="path826-0"
+             d="m 10.413174,274.62065 c 0,0 1.945907,1 3,1 1.054093,0 3,-1 3,-1 0,0 -0.210819,1.36754 0,2 0.263523,0.79057 1.5,2 1.5,2 0,0 -1.264367,1.20067 -1.5,2 -0.18063,0.61274 0.134348,1.91172 0.134348,1.91172 0,0 -2.091071,-1.08746 -3.220142,-1.05513 -1.04307,0.0299 -2.914206,1.14341 -2.914206,1.14341 0,0 -2.1333081,-1.22766 -3.302338,-1.18705 -0.9818348,0.0341 -2.697662,1.18705 -2.697662,1.18705 0,0 0.2108185,-1.36754 0,-2 -0.2635231,-0.79057 -1.5,-2 -1.5,-2 0,0 1.2364769,-1.20943 1.5,-2 0.2108185,-0.63246 0,-2 0,-2 0,0 1.9459074,1 3,1 1.0540926,0 3,-1 3,-1 z"
+             style="fill:#ffffff;fill-opacity:1;stroke:#444444;stroke-width:0.30000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:6;stroke-dasharray:none;stroke-opacity:1" />
+          <text
+             id="text824-4"
+             y="280.1868"
+             x="10.413174"
+             style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#444444;fill-opacity:1;stroke:none;stroke-width:0.26458332;stroke-opacity:1;"
+             xml:space="preserve"><tspan
+               style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333311px;font-family:'Source Han Serif';-inkscape-font-specification:'Source Han Serif Bold';text-align:center;text-anchor:middle;fill:#444444;fill-opacity:1;stroke-width:0.26458332;stroke:none;stroke-opacity:1;"
+               y="280.1868"
+               x="10.413174"
+               id="tspan822-4"
+               sodipodi:role="line">破門</tspan></text>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
