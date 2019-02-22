@@ -18,7 +18,7 @@ converter.set("section.page-master") do |element|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_FIRST_PAGE_TOP_SPACE
       this["margin-right"] = PAGE_INNER_SPACE
-      this["margin-after"] = PAGE_BOTTOM_SPACE
+      this["margin-bottom"] = PAGE_BOTTOM_SPACE
       this["margin-left"] = PAGE_OUTER_SPACE
     end
     this << Element.build("fo:region-before") do |this|
@@ -67,9 +67,9 @@ converter.set("section.page-master") do |element|
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = PAGE_TOP_SPACE
-      this["margin-right"] = PAGE_INNER_SPACE
+      this["margin-right"] = PAGE_OUTER_SPACE
       this["margin-bottom"] = PAGE_BOTTOM_SPACE
-      this["margin-left"] = PAGE_OUTER_SPACE
+      this["margin-left"] = PAGE_INNER_SPACE
     end
     this << Element.build("fo:region-before") do |this|
       this["region-name"] = "section.right-header"
@@ -267,6 +267,8 @@ converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.2em"
+    this["keep-with-next.within-page"] = "always"
+    this["keep-with-next.within-column"] = "always"
     this << Element.build("fo:external-graphic") do |this|
       this["padding-end"] = "0.4em"
       if scope.include?("wrong")
