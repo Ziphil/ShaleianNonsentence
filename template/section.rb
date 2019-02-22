@@ -227,7 +227,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
   next nodes
 end
 
-converter.add(["correct"], ["section.head"]) do |element|
+converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block-container") do |this|
     this << Element.build("fo:block") do |this|
@@ -237,14 +237,19 @@ converter.add(["correct"], ["section.head"]) do |element|
       this["padding-end"] = "3mm"
       this["line-height"] = LINE_HEIGHT
       this["axf:border-radius"] = "2mm"
-      this["background-color"] = BACKGROUND_COLOR
-      this << apply(element, "section.head.correct")
+      if element.name.include?("wrong")
+        this["color"] = "white"
+        this["background-color"] = BORDER_COLOR
+      else
+        this["background-color"] = BACKGROUND_COLOR
+      end
+      this << apply(element, scope + "." + element.name)
     end
   end
   next nodes
 end
 
-converter.add(["li"], ["section.head.wrong", "section.head.correct"]) do |element, scope|
+converter.add(["li"], [/section\.(head|content)\.(wrong|correct)/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this << apply(element, scope + ".li")
@@ -252,7 +257,7 @@ converter.add(["li"], ["section.head.wrong", "section.head.correct"]) do |elemen
   next nodes
 end
 
-converter.add(["sh"], ["section.head.wrong.li", "section.head.correct.li"]) do |element, scope|
+converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.3em"
@@ -269,7 +274,7 @@ converter.add(["sh"], ["section.head.wrong.li", "section.head.correct.li"]) do |
   next nodes
 end
 
-converter.add(["ja"], ["section.head.correct.li"]) do |element, scope|
+converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this << Element.build("fo:external-graphic") do |this|
@@ -278,12 +283,12 @@ converter.add(["ja"], ["section.head.correct.li"]) do |element, scope|
       this["baseline-shift"] = "0.1em"
       this["src"] = "url('../material/translation_arrow.svg')"
     end
-    this << apply(element, scope + ".sh")
+    this << apply(element, scope + ".ja")
   end
   next nodes
 end
 
-converter.add(["s"], ["section.head.wrong.li.sh", "section.head.correct.li.sh"]) do |element, scope|
+converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:inline") do |this|
     this["border-after-width"] = BORDER_WIDTH
