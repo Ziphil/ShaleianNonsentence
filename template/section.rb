@@ -262,7 +262,8 @@ converter.add(["s"], ["section.wrong.sh", "section.correct.sh"]) do |element, sc
     else
       this["border-after-color"] = "black"
     end
-    this["border-after-style"] = "solid"
+    this["border-after-style"] = "wave"
+    this["axf:border-wave-form"] = "2mm " + BORDER_WIDTH
     this << apply(element, scope)
   end
 end
