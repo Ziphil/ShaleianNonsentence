@@ -139,7 +139,9 @@ end
 
 converter.set("section.first-header") do |element|
   nodes = []
+  number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   nodes << Element.build("fo:block-container") do |this|
+    this["id"] = "section.top-#{number}"
     this["height"] = "35mm + " + BLEED_SIZE
     this["margin-top"] = "-1 * " + BLEED_SIZE
     this["margin-left"] = "-1 * " + BLEED_SIZE
@@ -159,7 +161,6 @@ converter.set("section.first-header") do |element|
       this["text-align"] = "center"
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
-        number = element.each_xpath("preceding-sibling::section").to_a.size + 1
         this << ~number.to_s
       end
     end
