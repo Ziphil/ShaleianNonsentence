@@ -119,14 +119,18 @@ converter.add(["section"], [""]) do |element|
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.left-footer"
-      this << Element.new("fo:block")
+      this << call(element, "page-number", "left")
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.right-footer"
-      this << Element.new("fo:block")
+      this << call(element, "page-number", "right")
     end
     this << Element.build("fo:flow") do |this|
       this["flow-name"] = "section.body"
+      this << Element.build("fo:marker") do |this|
+        this["marker-class-name"] = "section"
+        this << apply(element.each_xpath("title").first, "section.first-header")
+      end
       this << Element.build("fo:block") do |this|
         this << apply(element, "section")
       end

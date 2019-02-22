@@ -34,46 +34,46 @@ class Converter
     return document
   end
 
-  def convert_element(element, scope)
+  def convert_element(element, scope, *args)
     nodes = nil
     @templates.each do |(element_pattern, scope_pattern), block|
       if element_pattern != nil && element_pattern.any?{|s| s === element.name} && scope_pattern.any?{|s| s === scope}
-        nodes = block.call(element, scope)
+        nodes = block.call(element, scope, *args)
         break
       end
     end
     return nodes || @default_element_template.call(element)
   end
 
-  def convert_text(text, scope)
+  def convert_text(text, scope, *args)
     nodes = nil
     @templates.each do |(element_pattern, scope_pattern), block|
       if element_pattern == nil && scope_pattern.any?{|s| s === scope}
-        nodes = block.call(text, scope)
+        nodes = block.call(text, scope, *args)
         break
       end
     end
     return nodes || @default_text_template.call(text)
   end
 
-  def apply(element, scope)
+  def apply(element, scope, *args)
     nodes = []
     element.children.each do |inner_element|
       case inner_element
       when Element
-        nodes.concat(convert_element(inner_element, scope))
+        nodes.concat(convert_element(inner_element, scope, *args))
       when Text
-        nodes.concat(convert_text(inner_element, scope))
+        nodes.concat(convert_text(inner_element, scope, *args))
       end
     end
     return nodes
   end
 
-  def call(element, name)
+  def call(element, name, *args)
     result_nodes = []
     @functions.each do |function_name, block|
       if function_name == name
-        result_nodes = block.call(element)
+        result_nodes = block.call(element, *args)
         break
       end
     end
