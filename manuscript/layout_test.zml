@@ -4,12 +4,18 @@
 \section<
   \title<レイアウトテスト>
 
-  \wrong<
-    \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
-  >
-  \correct<
-    \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
-    \ja<すいません、5000 兆円はどこにありますか?>
+  \head<
+    \wrong<
+      \li<
+        \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{yo loc, pa qetat vo pâd a yen il'axalasoyok?}>
+        \ja<すいません、5000 兆円はどこにありますか?>
+      >
+    >
   >
 
   \content<
