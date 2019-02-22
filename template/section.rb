@@ -3,6 +3,8 @@
 
 SECTION_FIRST_PAGE_TOP_SPACE = "50mm"
 SECTION_FIRST_HEADER_EXTENT = "35mm"
+SECTION_PAGE_TOP_SPACE = "25mm"
+SECTION_HEADER_EXTENT = "13mm"
 SECTION_CONTENT_SPACE = "1.8em"
 
 converter.set("section.page-master") do |element|
@@ -41,14 +43,14 @@ converter.set("section.page-master") do |element|
     this["background-repeat"] = "no-repeat"
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
-      this["margin-top"] = PAGE_TOP_SPACE
+      this["margin-top"] = SECTION_PAGE_TOP_SPACE
       this["margin-right"] = PAGE_INNER_SPACE
       this["margin-bottom"] = PAGE_BOTTOM_SPACE
       this["margin-left"] = PAGE_OUTER_SPACE
     end
     this << Element.build("fo:region-before") do |this|
-      this["region-name"] = "section.left-header"
-      this["extent"] = HEADER_EXTENT
+      this["region-name"] = "section.right-header"
+      this["extent"] = SECTION_HEADER_EXTENT
       this["precedence"] = "true"
     end
     this << Element.build("fo:region-after") do |this|
@@ -66,14 +68,14 @@ converter.set("section.page-master") do |element|
     this["background-repeat"] = "no-repeat"
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
-      this["margin-top"] = PAGE_TOP_SPACE
+      this["margin-top"] = SECTION_PAGE_TOP_SPACE
       this["margin-right"] = PAGE_OUTER_SPACE
       this["margin-bottom"] = PAGE_BOTTOM_SPACE
       this["margin-left"] = PAGE_INNER_SPACE
     end
     this << Element.build("fo:region-before") do |this|
       this["region-name"] = "section.right-header"
-      this["extent"] = HEADER_EXTENT
+      this["extent"] = SECTION_HEADER_EXTENT
       this["precedence"] = "true"
     end
     this << Element.build("fo:region-after") do |this|
@@ -112,12 +114,8 @@ converter.add(["section"], [""]) do |element|
       this << call(element, "section.first-header")
     end
     this << Element.build("fo:static-content") do |this|
-      this["flow-name"] = "section.left-header"
-      this << Element.new("fo:block")
-    end
-    this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.right-header"
-      this << Element.new("fo:block")
+      this << call(element, "section.right-header")
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.left-footer"
@@ -142,7 +140,7 @@ converter.set("section.first-header") do |element|
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   nodes << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
-    this["height"] = "35mm + " + BLEED_SIZE
+    this["height"] = SECTION_FIRST_HEADER_EXTENT + " + " + BLEED_SIZE
     this["margin-top"] = "-1 * " + BLEED_SIZE
     this["margin-left"] = "-1 * " + BLEED_SIZE
     this["margin-right"] = "-1 * " + BLEED_SIZE
@@ -175,6 +173,21 @@ converter.set("section.first-header") do |element|
         this << apply(element.each_xpath("title").first, "section.first-header")
       end
     end
+  end
+  next nodes
+end
+
+converter.set("section.right-header") do |element|
+  nodes = []
+  nodes << Element.build("fo:block-container") do |this|
+    this["height"] = SECTION_HEADER_EXTENT + " + " + BLEED_SIZE
+    this["margin-top"] = "-1 * " + BLEED_SIZE
+    this["margin-left"] = "-1 * " + BLEED_SIZE
+    this["margin-right"] = "-1 * " + BLEED_SIZE
+    this["background-image"] = "url('../material/section_header.svg')"
+    this["background-position-vertical"] = "-3mm + " + BLEED_SIZE
+    this["background-position-horizontal"] = "-3mm + " + BLEED_SIZE
+    this["background-repeat"] = "no-repeat"
   end
   next nodes
 end
