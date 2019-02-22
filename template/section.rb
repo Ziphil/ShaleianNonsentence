@@ -229,22 +229,28 @@ end
 
 converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, scope|
   nodes = []
-  nodes << Element.build("fo:block-container") do |this|
-    this << Element.build("fo:block") do |this|
-      this["padding-before"] = "1mm"
-      this["padding-after"] = "1mm"
-      this["padding-start"] = "3mm"
-      this["padding-end"] = "3mm"
-      this["line-height"] = LINE_HEIGHT
-      this["axf:border-radius"] = "2mm"
-      if element.name.include?("wrong")
-        this["color"] = "white"
-        this["background-color"] = BORDER_COLOR
-      else
-        this["background-color"] = BACKGROUND_COLOR
-      end
-      this << apply(element, scope + "." + element.name)
+  nodes << Element.build("fo:block") do |this|
+    if scope.include?("content")
+      this["space-before"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO
+      this["space-before.maximum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MAXIMUM_RATIO
+      this["space-before.minimum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MINIMUM_RATIO
+      this["space-after"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO
+      this["space-after.maximum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MAXIMUM_RATIO
+      this["space-after.minimum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MINIMUM_RATIO
     end
+    this["padding-before"] = "1mm"
+    this["padding-after"] = "1mm"
+    this["padding-start"] = "3mm"
+    this["padding-end"] = "3mm"
+    this["line-height"] = LINE_HEIGHT
+    this["axf:border-radius"] = "2mm"
+    if element.name.include?("wrong")
+      this["color"] = "white"
+      this["background-color"] = BORDER_COLOR
+    else
+      this["background-color"] = BACKGROUND_COLOR
+    end
+    this << apply(element, scope + "." + element.name)
   end
   next nodes
 end
@@ -260,7 +266,7 @@ end
 converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
-    this["font-size"] = "1.3em"
+    this["font-size"] = "1.2em"
     this << Element.build("fo:external-graphic") do |this|
       this["padding-end"] = "0.4em"
       if scope.include?("wrong")
