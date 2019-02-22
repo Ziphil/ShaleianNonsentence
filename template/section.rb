@@ -240,6 +240,14 @@ converter.add(["sh"], ["section.wrong", "section.correct"]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.3em"
+    this << Element.build("fo:external-graphic") do |this|
+      this["padding-end"] = "0.4em"
+      if scope.include?("wrong")
+        this["src"] = "url('../material/wrong_mark.svg')"
+      else
+        this["src"] = "url('../material/correct_mark.svg')"
+      end
+    end
     this << apply(element, scope + ".sh")
   end
   next nodes
@@ -248,6 +256,12 @@ end
 converter.add(["ja"], ["section.correct"]) do |element|
   nodes = []
   nodes << Element.build("fo:block") do |this|
+    this << Element.build("fo:external-graphic") do |this|
+      this["padding-start"] = "1em"
+      this["padding-end"] = "0.4em"
+      this["baseline-shift"] = "0.1em"
+      this["src"] = "url('../material/translation_arrow.svg')"
+    end
     this << apply(element, "section.correct.ja")
   end
   next nodes
