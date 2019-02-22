@@ -179,7 +179,15 @@ converter.set("section.first-header") do |element|
   next nodes
 end
 
-converter.add(["wrong"], ["section"]) do |element|
+converter.add(["head"], ["section"]) do |element|
+  nodes = []
+  nodes << Element.build("fo:block") do |this|
+    this << apply(element, "section.head")
+  end
+  next nodes
+end
+
+converter.add(["wrong"], ["section.head"]) do |element|
   nodes = []
   nodes << Element.build("fo:block-container") do |this|
     this << Element.build("fo:block-container") do |this|
@@ -195,7 +203,7 @@ converter.add(["wrong"], ["section"]) do |element|
         this["axf:border-radius"] = "2mm"
         this["background-color"] = BORDER_COLOR
         this["absolute-position"] = "absolute"
-        this << apply(element, "section.wrong")
+        this << apply(element, "section.head.wrong")
       end
     end
     this << Element.build("fo:block-container") do |this|
@@ -219,7 +227,7 @@ converter.add(["wrong"], ["section"]) do |element|
   next nodes
 end
 
-converter.add(["correct"], ["section"]) do |element|
+converter.add(["correct"], ["section.head"]) do |element|
   nodes = []
   nodes << Element.build("fo:block-container") do |this|
     this << Element.build("fo:block") do |this|
@@ -230,13 +238,21 @@ converter.add(["correct"], ["section"]) do |element|
       this["line-height"] = LINE_HEIGHT
       this["axf:border-radius"] = "2mm"
       this["background-color"] = BACKGROUND_COLOR
-      this << apply(element, "section.correct")
+      this << apply(element, "section.head.correct")
     end
   end
   next nodes
 end
 
-converter.add(["sh"], ["section.wrong", "section.correct"]) do |element, scope|
+converter.add(["li"], ["section.head.wrong", "section.head.correct"]) do |element, scope|
+  nodes = []
+  nodes << Element.build("fo:block") do |this|
+    this << apply(element, scope + ".li")
+  end
+  next nodes
+end
+
+converter.add(["sh"], ["section.head.wrong.li", "section.head.correct.li"]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.3em"
@@ -253,7 +269,7 @@ converter.add(["sh"], ["section.wrong", "section.correct"]) do |element, scope|
   next nodes
 end
 
-converter.add(["ja"], ["section.correct"]) do |element|
+converter.add(["ja"], ["section.head.correct.li"]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this << Element.build("fo:external-graphic") do |this|
@@ -262,12 +278,12 @@ converter.add(["ja"], ["section.correct"]) do |element|
       this["baseline-shift"] = "0.1em"
       this["src"] = "url('../material/translation_arrow.svg')"
     end
-    this << apply(element, "section.correct.ja")
+    this << apply(element, scope + ".sh")
   end
   next nodes
 end
 
-converter.add(["s"], ["section.wrong.sh", "section.correct.sh"]) do |element, scope|
+converter.add(["s"], ["section.head.wrong.li.sh", "section.head.correct.li.sh"]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:inline") do |this|
     this["border-after-width"] = BORDER_WIDTH
@@ -291,12 +307,12 @@ converter.add(["content"], ["section"]) do |element|
     this["space-after"] = SECTION_CONTENT_SPACE
     this["space-after.maximum"] = SECTION_CONTENT_SPACE + " * " + MAXIMUM_RATIO
     this["space-after.minimum"] = SECTION_CONTENT_SPACE + " * " + MINIMUM_RATIO
-    this << apply(element, "section.desc")
+    this << apply(element, "section.content")
   end
   next nodes
 end
 
-converter.add(["p"], ["section.desc"]) do |element|
+converter.add(["p"], ["section.content"]) do |element|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["space-before"] = PARAGRAPH_SPACE
@@ -308,12 +324,12 @@ converter.add(["p"], ["section.desc"]) do |element|
     this["line-height"] = LINE_HEIGHT
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
-    this << apply(element, "section.desc.p")
+    this << apply(element, "section.content.p")
   end
   next nodes
 end
 
-converter.add(nil, ["section.desc.p"]) do |text|
+converter.add(nil, ["section.content.p"]) do |text|
   string = text.to_s
   string.gsub!(/(?<=。)\s*\n\s*/, "")
   next [~string]

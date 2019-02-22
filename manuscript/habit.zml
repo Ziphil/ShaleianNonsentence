@@ -4,12 +4,18 @@
 \section<
   \title<習慣の表現>
 
-  \wrong<
-    \sh<{\s<catsatas> olof a tel vo fecil ica sod.}>
-  >
-  \correct<
-    \sh<{\s<vomac catsatos> olof a tel vo fecil ica sod.}>
-    \ja<私はよく家の周りを散歩する。>
+  \head<
+    \wrong<
+      \li<
+        \sh<{\s<catsatas> olof a tel vo fecil ica sod.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{\s<vomac catsatos> olof a tel vo fecil ica sod.}>
+        \ja<私はよく家の周りを散歩する。>
+      >
+    >
   >
 
   \content<
