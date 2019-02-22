@@ -5,7 +5,7 @@ SECTION_FIRST_PAGE_TOP_SPACE = "50mm"
 SECTION_FIRST_HEADER_EXTENT = "35mm"
 SECTION_PAGE_TOP_SPACE = "25mm"
 SECTION_HEADER_EXTENT = "13mm"
-SECTION_CONTENT_SPACE = "1.8em"
+SECTION_CONTENT_SPACE = "2em"
 
 converter.set("section.page-master") do |element|
   nodes = []
@@ -328,11 +328,7 @@ converter.add(["content"], ["section"]) do |element|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["space-before"] = SECTION_CONTENT_SPACE
-    this["space-before.maximum"] = SECTION_CONTENT_SPACE + " * " + MAXIMUM_RATIO
-    this["space-before.minimum"] = SECTION_CONTENT_SPACE + " * " + MINIMUM_RATIO
     this["space-after"] = SECTION_CONTENT_SPACE
-    this["space-after.maximum"] = SECTION_CONTENT_SPACE + " * " + MAXIMUM_RATIO
-    this["space-after.minimum"] = SECTION_CONTENT_SPACE + " * " + MINIMUM_RATIO
     this << apply(element, "section.content")
   end
   next nodes
