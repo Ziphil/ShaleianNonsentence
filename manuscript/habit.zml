@@ -28,10 +28,21 @@
     >
     \p<
       {vom} は {e} 句に反復する内容をとりますが、このときの反復内容を表す動詞は通時時制にするのが自然です。
+      動作を反復しているわけなので、その動作は過去でも未来でも行われていることになるためです。
     >
     \correct<
       \li<
-        \sh<{vomac e kin catsatos olof a tel vo fecil ica sod.}>
+        \sh<{\s<vomac> e kin \s<catsatos> olof a tel vo fecil ica sod.}>
+        \ja<私はよく家の周りを散歩する。>
+      >
+    >
+    \p<
+      {vom} は助動詞的に用いることが可能なので、{e kin} の部分は省略することができます。
+      これが最初に掲げた形です。
+    >
+    \correct<
+      \li<
+        \sh<{vomac catsatos olof a tel vo fecil ica sod.}>
         \ja<私はよく家の周りを散歩する。>
       >
     >
@@ -40,17 +51,32 @@
     >
     \wrong<
       \li<
-        \sh<{vomac e kin catsatas olof a tel vo fecil ica sod.}>
+        \sh<{vomac e kin \s<catsatas> olof a tel vo fecil ica sod.}>
+      >
+      \li<
+        \sh<{vomac \s<catsatas> olof a tel vo fecil ica sod.}>
       >
     >
     \p<
-      {vom} は助動詞的に用いることが可能です。
-      したがって、{e kin} の部分は省略することができます。
+      {vom} そのものを通時時制にすることもありません。
+    >
+    \wrong<
+      \li<
+        \sh<{\s<vomoc> catsatas olof a tel vo fecil ica sod.}>
+      >
+    >
+    \p<
+      {vom} を過去時制もしくは未来時制にすることで、過去に行っていた習慣や未来に行うであろう習慣を表すこともできます。
+      この場合でも、{vom} に続く習慣の内容を表す動詞は通時時制にします。
     >
     \correct<
       \li<
-        \sh<{vomac catsatos olof a tel vo fecil ica sod.}>
-        \ja<私はよく家の周りを散歩する。>
+        \sh<{\s<vomec> sôdos a tel e ritif te lon atov.}>
+        \ja<私は毎晩魚を食べていた。>
+      >
+      \li<
+        \sh<{kozeses a ces ca tel e'n \s<vomic> feketos a's te tat ile tef aric.}>
+        \ja<彼は私に 6 時に起き続けることを約束した。>
       >
     >
   >
