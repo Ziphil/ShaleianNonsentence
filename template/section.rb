@@ -170,7 +170,6 @@ converter.set("section.first-header") do |element|
       this["top"] = "19mm + " + BLEED_SIZE
       this["left"] = "47mm + " + BLEED_SIZE
       this["font-size"] = "18pt"
-      this["color"] = BORDER_COLOR
       this["letter-spacing"] = "0.05em"
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
