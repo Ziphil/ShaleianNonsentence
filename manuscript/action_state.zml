@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="action-state"|<
+  \title<動作中や動作後の状態>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{xílac a xàk aquk \s<obig>.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{xílac a xàk aquk \s<se abig>.}>
+        \ja<あの照明は青く光っている。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>

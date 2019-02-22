@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="purpose_person"|<
+  \title<目的に人を置く場合>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{feges a tel e yelicnelas \s<so> ces.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{feges a tel e yelicnelas \s<sora> ces.}>
+        \ja<私は彼女のためにネックレスを買った。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>

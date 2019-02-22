@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="unit-noun"|<
+  \title<単位名詞>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{vilises a tel te saq la \s<nolôt ayoset>.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{vilises a tel te saq la \s<lìm alot ile nolôt ayoset>.}>
+        \ja<今日は 3 km 走った。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>
