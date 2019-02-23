@@ -4,18 +4,18 @@
 converter.set("page-number") do |element, position|
   nodes = []
   nodes << Element.build("fo:block-container") do |this|
-    this["height"] = FOOTER_EXTENT + " + " + BLEED_SIZE
-    this["margin-bottom"] = "-1 * " + BLEED_SIZE
-    this["margin-left"] = "-1 * " + BLEED_SIZE
-    this["margin-right"] = "-1 * " + BLEED_SIZE
+    this["height"] = "#{FOOTER_EXTENT} + #{BLEED_SIZE}"
+    this["margin-bottom"] = "-1 * #{BLEED_SIZE}"
+    this["margin-left"] = "-1 * #{BLEED_SIZE}"
+    this["margin-right"] = "-1 * #{BLEED_SIZE}"
     this << Element.build("fo:block-container") do |this|
       this["width"] = "9mm"
-      this["height"] = FOOTER_EXTENT + " + " + BLEED_SIZE
+      this["height"] = "#{FOOTER_EXTENT} + #{BLEED_SIZE}"
       this["bottom"] = "0mm"
-      if position == "left"
-        this["left"] = "8mm + " + BLEED_SIZE
+      if position == :left
+        this["left"] = "8mm + #{BLEED_SIZE}"
       else
-        this["right"] = "8mm + " + BLEED_SIZE
+        this["right"] = "8mm + #{BLEED_SIZE}"
       end
       this["font-family"] = SPECIAL_FONT_FAMILY
       this["font-size"] = "10pt"
@@ -32,10 +32,10 @@ converter.set("page-number") do |element, position|
     end
     this << Element.build("fo:block-container") do |this|
       this["top"] = "0mm"
-      if position == "left"
-        this["left"] = "17mm + " + BLEED_SIZE
+      if position == :left
+        this["left"] = "17mm + #{BLEED_SIZE}"
       else
-        this["right"] = "17mm + " + BLEED_SIZE
+        this["right"] = "17mm + #{BLEED_SIZE}"
       end
       this["margin-left"] = "0.5em"
       this["margin-right"] = "0.5em"

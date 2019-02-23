@@ -119,11 +119,11 @@ converter.add(["section"], [""]) do |element|
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.left-footer"
-      this << call(element, "page-number", "left")
+      this << call(element, "page-number", :left)
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.right-footer"
-      this << call(element, "page-number", "right")
+      this << call(element, "page-number", :right)
     end
     this << Element.build("fo:flow") do |this|
       this["flow-name"] = "section.body"
@@ -144,18 +144,18 @@ converter.set("section.first-header") do |element|
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   nodes << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
-    this["height"] = SECTION_FIRST_HEADER_EXTENT + " + " + BLEED_SIZE
-    this["margin-top"] = "-1 * " + BLEED_SIZE
-    this["margin-left"] = "-1 * " + BLEED_SIZE
-    this["margin-right"] = "-1 * " + BLEED_SIZE
+    this["height"] = "#{SECTION_FIRST_HEADER_EXTENT} + #{BLEED_SIZE}"
+    this["margin-top"] = "-1 * #{BLEED_SIZE}"
+    this["margin-left"] = "-1 * #{BLEED_SIZE}"
+    this["margin-right"] = "-1 * #{BLEED_SIZE}"
     this["background-image"] = "url('../material/section_first_header.svg')"
-    this["background-position-vertical"] = "-3mm + " + BLEED_SIZE
-    this["background-position-horizontal"] = "-3mm + " + BLEED_SIZE
+    this["background-position-vertical"] = "-3mm + #{BLEED_SIZE}"
+    this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
     this << Element.build("fo:block-container") do |this|
       this["width"] = "30mm"
-      this["top"] = "15mm + " + BLEED_SIZE
-      this["left"] = "0mm + " + BLEED_SIZE
+      this["top"] = "15mm + #{BLEED_SIZE}"
+      this["left"] = "0mm + #{BLEED_SIZE}"
       this["font-family"] = SPECIAL_FONT_FAMILY
       this["font-size"] = "50pt"
       this["color"] = "white"
@@ -171,7 +171,7 @@ converter.set("section.first-header") do |element|
       this["block-progression-dimension"] = "0mm"
       this["block-progression-dimension.maximum"] = "100%"
       this["bottom"] = "6mm"
-      this["left"] = "43mm + " + BLEED_SIZE
+      this["left"] = "43mm + #{BLEED_SIZE}"
       this["font-size"] = "16pt"
       this["line-height"] = "1.1"
       this["text-align"] = "justify"
@@ -189,13 +189,13 @@ end
 converter.set("section.right-header") do |element|
   nodes = []
   nodes << Element.build("fo:block-container") do |this|
-    this["height"] = SECTION_HEADER_EXTENT + " + " + BLEED_SIZE
-    this["margin-top"] = "-1 * " + BLEED_SIZE
-    this["margin-left"] = "-1 * " + BLEED_SIZE
-    this["margin-right"] = "-1 * " + BLEED_SIZE
+    this["height"] = "#{SECTION_HEADER_EXTENT} + #{BLEED_SIZE}"
+    this["margin-top"] = "-1 * #{BLEED_SIZE}"
+    this["margin-left"] = "-1 * #{BLEED_SIZE}"
+    this["margin-right"] = "-1 * #{BLEED_SIZE}"
     this["background-image"] = "url('../material/section_header.svg')"
-    this["background-position-vertical"] = "-3mm + " + BLEED_SIZE
-    this["background-position-horizontal"] = "-3mm + " + BLEED_SIZE
+    this["background-position-vertical"] = "-3mm + #{BLEED_SIZE}"
+    this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
   end
   next nodes
@@ -253,12 +253,12 @@ converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, sc
   nodes = []
   nodes << Element.build("fo:block") do |this|
     if scope.include?("content")
-      this["space-before"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO
-      this["space-before.maximum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MAXIMUM_RATIO
-      this["space-before.minimum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MINIMUM_RATIO
-      this["space-after"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO
-      this["space-after.maximum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MAXIMUM_RATIO
-      this["space-after.minimum"] = PARAGRAPH_SPACE + " * " + BORDERED_SPACE_RATIO + " * " + MINIMUM_RATIO
+      this["space-before"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
+      this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
+      this["space-before.minimum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MINIMUM_RATIO}"
+      this["space-after"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
+      this["space-after.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
+      this["space-after.minimum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MINIMUM_RATIO}"
     end
     this["padding-before"] = "1mm"
     this["padding-after"] = "1mm"
@@ -329,7 +329,7 @@ converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |e
       this["border-after-color"] = "black"
     end
     this["border-after-style"] = "wave"
-    this["axf:border-wave-form"] = "1.5mm " + BORDER_WIDTH
+    this["axf:border-wave-form"] = "1.5mm #{BORDER_WIDTH}"
     this << apply(element, scope)
   end
 end
@@ -348,11 +348,11 @@ converter.add(["p"], ["section.content"]) do |element|
   nodes = []
   nodes << Element.build("fo:block") do |this|
     this["space-before"] = PARAGRAPH_SPACE
-    this["space-before.maximum"] = PARAGRAPH_SPACE + " * " + MAXIMUM_RATIO
-    this["space-before.minimum"] = PARAGRAPH_SPACE + " * " + MINIMUM_RATIO
+    this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
+    this["space-before.minimum"] = "#{PARAGRAPH_SPACE} * #{MINIMUM_RATIO}"
     this["space-after"] = PARAGRAPH_SPACE
-    this["space-after.maximum"] = PARAGRAPH_SPACE + " * " + MAXIMUM_RATIO
-    this["space-after.minimum"] = PARAGRAPH_SPACE + " * " + MINIMUM_RATIO
+    this["space-after.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
+    this["space-after.minimum"] = "#{PARAGRAPH_SPACE} * #{MINIMUM_RATIO}"
     this["line-height"] = LINE_HEIGHT
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
