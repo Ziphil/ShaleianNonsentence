@@ -13,9 +13,9 @@ converter.set("page-number") do |element, position|
       this["height"] = FOOTER_EXTENT + " + " + BLEED_SIZE
       this["bottom"] = "0mm"
       if position == "left"
-        this["left"] = "6mm + " + BLEED_SIZE
+        this["left"] = "8mm + " + BLEED_SIZE
       else
-        this["right"] = "6mm + " + BLEED_SIZE
+        this["right"] = "8mm + " + BLEED_SIZE
       end
       this["font-family"] = SPECIAL_FONT_FAMILY
       this["font-size"] = "10pt"
@@ -31,12 +31,11 @@ converter.set("page-number") do |element, position|
       end
     end
     this << Element.build("fo:block-container") do |this|
-      this["width"] = "100mm"
       this["top"] = "0mm"
       if position == "left"
-        this["left"] = "15mm + " + BLEED_SIZE
+        this["left"] = "17mm + " + BLEED_SIZE
       else
-        this["right"] = "15mm + " + BLEED_SIZE
+        this["right"] = "17mm + " + BLEED_SIZE
       end
       this["margin-left"] = "0.5em"
       this["margin-right"] = "0.5em"

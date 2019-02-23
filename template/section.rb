@@ -167,10 +167,16 @@ converter.set("section.first-header") do |element|
       end
     end
     this << Element.build("fo:block-container") do |this|
-      this["top"] = "19mm + " + BLEED_SIZE
-      this["left"] = "47mm + " + BLEED_SIZE
-      this["font-size"] = "18pt"
-      this["letter-spacing"] = "0.05em"
+      this["width"] = "85mm"
+      this["block-progression-dimension"] = "0mm"
+      this["block-progression-dimension.maximum"] = "100%"
+      this["bottom"] = "6mm"
+      this["left"] = "43mm + " + BLEED_SIZE
+      this["font-size"] = "16pt"
+      this["line-height"] = "1.1"
+      this["text-align"] = "justify"
+      this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
+      this["axf:avoid-widow-words"] = "true"
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
         this << apply(element.each_xpath("title").first, "section.first-header")
@@ -315,6 +321,7 @@ end
 converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |element, scope|
   nodes = []
   nodes << Element.build("fo:inline") do |this|
+    this["padding-after"] = "0.05em"
     this["border-after-width"] = BORDER_WIDTH
     if scope.include?("wrong")
       this["border-after-color"] = "white"
@@ -322,7 +329,7 @@ converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |e
       this["border-after-color"] = "black"
     end
     this["border-after-style"] = "wave"
-    this["axf:border-wave-form"] = "2mm " + BORDER_WIDTH
+    this["axf:border-wave-form"] = "1.5mm " + BORDER_WIDTH
     this << apply(element, scope)
   end
 end
