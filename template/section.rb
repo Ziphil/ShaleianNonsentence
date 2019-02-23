@@ -309,7 +309,7 @@ converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
     this["keep-with-previous.within-page"] = "always"
     this["keep-with-previous.within-column"] = "always"
     this << Element.build("fo:external-graphic") do |this|
-      this["padding-start"] = "1em"
+      this["padding-start"] = "0.8em"
       this["padding-end"] = "0.4em"
       this["baseline-shift"] = "0.1em"
       this["src"] = "url('../material/translation_arrow.svg')"
