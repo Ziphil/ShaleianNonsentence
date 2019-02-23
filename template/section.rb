@@ -8,7 +8,7 @@ SECTION_HEADER_EXTENT = "13mm"
 SECTION_CONTENT_SPACE = "2em"
 
 converter.set("section.page-master") do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:simple-page-master") do |this|
     this["master-name"] = "section.first"
     this["page-width"] = PAGE_WIDTH
@@ -105,7 +105,7 @@ converter.set("section.page-master") do |element|
 end
 
 converter.add(["section"], [""]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:page-sequence") do |this|
     this["master-reference"] = "section"
     this["initial-page-number"] = "auto-even"
@@ -140,7 +140,7 @@ converter.add(["section"], [""]) do |element|
 end
 
 converter.set("section.first-header") do |element|
-  nodes = []
+  nodes = Nodes[]
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   nodes << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
@@ -187,7 +187,7 @@ converter.set("section.first-header") do |element|
 end
 
 converter.set("section.right-header") do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block-container") do |this|
     this["height"] = "#{SECTION_HEADER_EXTENT} + #{BLEED_SIZE}"
     this["margin-top"] = "-1 * #{BLEED_SIZE}"
@@ -202,7 +202,7 @@ converter.set("section.right-header") do |element|
 end
 
 converter.add(["head"], ["section"]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this << apply(element, "section.head")
   end
@@ -210,7 +210,7 @@ converter.add(["head"], ["section"]) do |element|
 end
 
 converter.add(["wrong"], ["section.head"]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block-container") do |this|
     this << Element.build("fo:block-container") do |this|
       this << Element.build("fo:block") do |this|
@@ -250,7 +250,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
 end
 
 converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, scope|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     if scope.include?("content")
       this["space-before"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
@@ -278,7 +278,7 @@ converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, sc
 end
 
 converter.add(["li"], [/section\.(head|content)\.(wrong|correct)/]) do |element, scope|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this << apply(element, scope + ".li")
   end
@@ -286,7 +286,7 @@ converter.add(["li"], [/section\.(head|content)\.(wrong|correct)/]) do |element,
 end
 
 converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.2em"
     this["keep-with-next.within-page"] = "always"
@@ -305,7 +305,7 @@ converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
 end
 
 converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this << Element.build("fo:external-graphic") do |this|
       this["padding-start"] = "1em"
@@ -319,7 +319,7 @@ converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
 end
 
 converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |element, scope|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:inline") do |this|
     this["padding-after"] = "0.05em"
     this["border-after-width"] = BORDER_WIDTH
@@ -335,7 +335,7 @@ converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |e
 end
 
 converter.add(["content"], ["section"]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this["space-before"] = SECTION_CONTENT_SPACE
     this["space-after"] = SECTION_CONTENT_SPACE
@@ -345,7 +345,7 @@ converter.add(["content"], ["section"]) do |element|
 end
 
 converter.add(["p"], ["section.content"]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this["space-before"] = PARAGRAPH_SPACE
     this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
@@ -362,7 +362,7 @@ converter.add(["p"], ["section.content"]) do |element|
 end
 
 converter.add(nil, ["section.content.p"]) do |text|
-  string = text.to_s
-  string.gsub!(/(?<=。)\s*\n\s*/, "")
-  next [~string]
+  nodes = Nodes[]
+  nodes << ~text.to_s.gsub(/(?<=。)\s*\n\s*/, "")
+  next nodes
 end

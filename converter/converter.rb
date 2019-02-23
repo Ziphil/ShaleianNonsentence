@@ -21,8 +21,8 @@ class Converter
     @configs = {}
     @templates = {}
     @functions = {}
-    @default_element_template = lambda{|s| []}
-    @default_text_template = lambda{|s| []}
+    @default_element_template = lambda{|s| Nodes[]}
+    @default_text_template = lambda{|s| Nodes[]}
   end
 
   def convert
@@ -57,27 +57,27 @@ class Converter
   end
 
   def apply(element, scope, *args)
-    nodes = []
+    nodes = Nodes[]
     element.children.each do |inner_element|
       case inner_element
       when Element
-        nodes.concat(convert_element(inner_element, scope, *args))
+        nodes << convert_element(inner_element, scope, *args)
       when Text
-        nodes.concat(convert_text(inner_element, scope, *args))
+        nodes << convert_text(inner_element, scope, *args)
       end
     end
     return nodes
   end
 
   def call(element, name, *args)
-    result_nodes = []
+    nodes = Nodes[]
     @functions.each do |function_name, block|
       if function_name == name
-        result_nodes = block.call(element, *args)
+        nodes = block.call(element, *args)
         break
       end
     end
-    return result_nodes
+    return nodes
   end
 
   def add(element_pattern, scope_pattern, &block)

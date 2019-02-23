@@ -32,10 +32,10 @@ BORDER_COLOR = "#444444"
 BACKGROUND_COLOR = "#DDDDDD"
 
 FONT_FAMILY = EUROPIAN_FONT_FAMILY + ", " + JAPANESE_FONT_FAMILY
-SHALEIA_FONT_FAMILY = EUROPIAN_SHALEIA_FONT_FAMILY + "," + JAPANESE_SHALEIA_FONT_FAMILY
+SHALEIA_FONT_FAMILY = EUROPIAN_SHALEIA_FONT_FAMILY + ", " + JAPANESE_SHALEIA_FONT_FAMILY
 
 converter.add(["root"], [""]) do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:root") do |this|
     this["xmlns:fo"] = "http://www.w3.org/1999/XSL/Format"
     this["xmlns:axf"] = "http://www.antennahouse.com/names/XSL/Extensions"
@@ -54,8 +54,8 @@ converter.add(["root"], [""]) do |element|
   next nodes
 end
 
-converter.add(["x", "xn"], [lambda{|s| true}]) do |element, scope|
-  nodes = []
+converter.add(["x", "xn"], [lambda{|_| true}]) do |element, scope|
+  nodes = Nodes[]
   nodes << Element.build("fo:inline") do |this|
     this["font-family"] = SHALEIA_FONT_FAMILY
     this["font-size"] = SHALEIA_FONT_SIZE
@@ -64,8 +64,8 @@ converter.add(["x", "xn"], [lambda{|s| true}]) do |element, scope|
   next nodes
 end
 
-converter.add(["i"], [lambda{|s| true}]) do |element, scope|
-  nodes = []
+converter.add(["i"], [lambda{|_| true}]) do |element, scope|
+  nodes = Nodes[]
   nodes << Element.build("fo:inline") do |this|
     this["font-style"] = "italic"
     this << apply(element, scope)
@@ -74,6 +74,7 @@ converter.add(["i"], [lambda{|s| true}]) do |element, scope|
 end
 
 converter.add_default(nil) do |text|
-  string = text.to_s
-  next [~string]
+  nodes = Nodes[]
+  nodes << ~text.to_s
+  next nodes
 end

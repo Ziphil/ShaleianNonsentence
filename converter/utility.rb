@@ -49,12 +49,27 @@ end
 class Parent
 
   def <<(object)
-    if object.is_a?(Array)
+    if object.is_a?(Nodes)
       object.each do |child|
         add(child)
       end
     else
       add(object)
+    end
+  end
+
+end
+
+
+class Nodes < Array
+
+  def <<(object)
+    if object.is_a?(Nodes)
+      object.each do |child|
+        push(child)
+      end
+    else
+      push(object)
     end
   end
 

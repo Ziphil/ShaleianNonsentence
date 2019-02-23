@@ -2,7 +2,7 @@
 
 
 converter.set("bookmark-tree") do |element|
-  nodes = []
+  nodes = Nodes[]
   nodes << Element.build("fo:bookmark") do |this|
     this["starting-state"] = "show"
     this << Element.build("fo:bookmark-title") do |this|
@@ -14,7 +14,7 @@ converter.set("bookmark-tree") do |element|
 end
 
 converter.add(["section"], ["bookmark-tree.item"]) do |element|
-  nodes = []
+  nodes = Nodes[]
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   title = element.each_xpath("title").first.inner_text
   nodes << Element.build("fo:bookmark") do |this|
