@@ -290,8 +290,6 @@ converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
   nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.2em"
-    this["keep-with-next.within-page"] = "always"
-    this["keep-with-next.within-column"] = "always"
     this << Element.build("fo:external-graphic") do |this|
       this["padding-end"] = "0.4em"
       if scope.include?("wrong")
@@ -308,6 +306,8 @@ end
 converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
   nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
+    this["keep-with-previous.within-page"] = "always"
+    this["keep-with-previous.within-column"] = "always"
     this << Element.build("fo:external-graphic") do |this|
       this["padding-start"] = "1em"
       this["padding-end"] = "0.4em"
