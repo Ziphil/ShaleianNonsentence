@@ -3,9 +3,10 @@
 
 SECTION_FIRST_PAGE_TOP_SPACE = "50mm"
 SECTION_FIRST_HEADER_EXTENT = "35mm"
-SECTION_PAGE_TOP_SPACE = "25mm"
+SECTION_PAGE_TOP_SPACE = "23mm"
 SECTION_HEADER_EXTENT = "13mm"
 SECTION_CONTENT_SPACE = "2em"
+SECTION_SEPARATOR_SPACE = "1em"
 
 converter.set("section.page-master") do |element|
   nodes = Nodes[]
@@ -337,8 +338,16 @@ end
 converter.add(["content"], ["section"]) do |element|
   nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
+    this["start-indent"] = "-3mm"
+    this["end-indent"] = "-3mm"
     this["space-before"] = SECTION_CONTENT_SPACE
-    this["space-after"] = SECTION_CONTENT_SPACE
+    this["space-after"] = SECTION_SEPARATOR_SPACE
+    this << Element.build("fo:external-graphic") do |this|
+      this["src"] = "url('../material/content_separator.svg')"
+    end
+  end
+  nodes << Element.build("fo:block") do |this|
+    this["space-before"] = SECTION_SEPARATOR_SPACE
     this << apply(element, "section.content")
   end
   next nodes
@@ -356,6 +365,8 @@ converter.add(["p"], ["section.content"]) do |element|
     this["line-height"] = LINE_HEIGHT
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
+    this["widows"] = "1"
+    this["orphans"] = "1"
     this << apply(element, "section.content.p")
   end
   next nodes
