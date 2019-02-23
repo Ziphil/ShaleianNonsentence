@@ -3,12 +3,19 @@
 
 \root<
 
+  ## ?
   &import|src="habit.zml"|>
+  &import|src="transitive_causative.zml"|>
+
+  ## 助接詞
+  &import|src="particle_mismatch_japanese.zml"|>
+  &import|src="noun_modifying_particle.zml"|>
   &import|src="action_state.zml"|>
   &import|src="resultative_object.zml"|>
-  &import|src="unit_noun.zml"|>
   &import|src="purpose_person.zml"|>
+  &import|src="unit_noun.zml"|>
 
+  ## テスト用
   &import|src="layout_test.zml"|>
 
 >

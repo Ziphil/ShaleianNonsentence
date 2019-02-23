@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="particle-mismatch-japanese"|<
+  \title<シャレイア語の助接詞は日本語の助詞と必ずしも対応しない>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{zizetes a tel \s<e> dales zecasac a.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{zizetes a tel \e<ca> dales zecasac a.}>
+        \ja<私は逃げる犬を追いかけた。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>
