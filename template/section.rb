@@ -217,10 +217,12 @@ converter.add(["wrong"], ["section.head"]) do |element|
       this << Element.build("fo:block") do |this|
         this["top"] = "0mm"
         this["left"] = "0mm"
+        this["margin-left"] = "-2mm"
+        this["margin-right"] = "-2mm"
         this["padding-before"] = "1mm"
         this["padding-after"] = "1mm"
-        this["padding-start"] = "3mm"
-        this["padding-end"] = "3mm"
+        this["padding-left"] = "3mm"
+        this["padding-right"] = "3mm"
         this["color"] = "white"
         this["line-height"] = LINE_HEIGHT
         this["axf:border-radius"] = "2mm"
@@ -231,7 +233,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
     end
     this << Element.build("fo:block-container") do |this|
       this["top"] = "-7.5mm"
-      this["left"] = "-8mm"
+      this["left"] = "-7mm"
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
         this << Element.build("fo:external-graphic") do |this|
@@ -241,6 +243,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
     end
   end
   nodes << Element.build("fo:block") do |this|
+    this["space-after"] = "0.5mm"
     this["font-size"] = "0pt"
     this["text-align"] = "center"
     this << Element.build("fo:external-graphic") do |this|
@@ -261,10 +264,12 @@ converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, sc
       this["space-after.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
       this["space-after.minimum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MINIMUM_RATIO}"
     end
+    this["margin-left"] = "-2mm"
+    this["margin-right"] = "-2mm"
     this["padding-before"] = "1mm"
     this["padding-after"] = "1mm"
-    this["padding-start"] = "3mm"
-    this["padding-end"] = "3mm"
+    this["padding-left"] = "3mm"
+    this["padding-right"] = "3mm"
     this["line-height"] = LINE_HEIGHT
     this["axf:border-radius"] = "2mm"
     if element.name.include?("wrong")
@@ -291,7 +296,7 @@ converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
   nodes << Element.build("fo:block") do |this|
     this["font-size"] = "1.2em"
     this << Element.build("fo:external-graphic") do |this|
-      this["padding-end"] = "0.4em"
+      this["margin-right"] = "0.4em"
       if scope.include?("wrong")
         this["src"] = "url('../material/wrong_mark.svg')"
       else
@@ -306,11 +311,11 @@ end
 converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
   nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
+    this["margin-left"] = "0.8em"
     this["keep-with-previous.within-page"] = "always"
     this["keep-with-previous.within-column"] = "always"
     this << Element.build("fo:external-graphic") do |this|
-      this["padding-start"] = "0.8em"
-      this["padding-end"] = "0.4em"
+      this["margin-right"] = "0.4em"
       this["baseline-shift"] = "0.1em"
       this["src"] = "url('../material/translation_arrow.svg')"
     end
@@ -322,14 +327,14 @@ end
 converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |element, scope|
   nodes = Nodes[]
   nodes << Element.build("fo:inline") do |this|
-    this["padding-after"] = "0.05em"
-    this["border-after-width"] = BORDER_WIDTH
+    this["padding-bottom"] = "0.05em"
+    this["border-bottom-width"] = BORDER_WIDTH
     if scope.include?("wrong")
-      this["border-after-color"] = "white"
+      this["border-bottom-color"] = "white"
     else
-      this["border-after-color"] = "black"
+      this["border-bottom-color"] = "black"
     end
-    this["border-after-style"] = "wave"
+    this["border-bottom-style"] = "wave"
     this["axf:border-wave-form"] = "1.5mm #{BORDER_WIDTH}"
     this << apply(element, scope)
   end
@@ -338,10 +343,10 @@ end
 converter.add(["content"], ["section"]) do |element|
   nodes = Nodes[]
   nodes << Element.build("fo:block") do |this|
-    this["start-indent"] = "-3mm"
-    this["end-indent"] = "-3mm"
     this["space-before"] = SECTION_CONTENT_SPACE
     this["space-after"] = SECTION_SEPARATOR_SPACE
+    this["margin-left"] = "-3mm"
+    this["margin-right"] = "-3mm"
     this << Element.build("fo:external-graphic") do |this|
       this["src"] = "url('../material/content_separator.svg')"
     end
