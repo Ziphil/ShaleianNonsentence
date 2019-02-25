@@ -2,24 +2,49 @@
 \xml?|version="1.0",encoding="UTF-8"|>
 
 \section|id="choice-connective",rel="alternative-connective"|<
-  \title<選択範囲を表す {ve} 句では選択肢を {o} で繋げる>
+  \title<選択肢を表す {ve} 句では連結詞に {o} を用いる>
 
   \head<
     \wrong<
       \li<
-        \sh<{}>
+        \sh<{pa câses a loc e ces te pet ive saq \s<á> tazît?}>
       >
     >
     \correct<
       \li<
-        \sh<{}>
-        \ja<>
+        \sh<{pa câses a loc e ces te pet ive saq \s<o> tazît?}>
+        \ja<あなたが彼と会ったのは今日か昨日のどちらですか?>
       >
     >
   >
 
   \content<
     \p<
+      {ve} を用いた選択疑問文において、{ive} 句の中の選択肢を繋ぐ連結詞には {o} を用います。
+    >
+    \correct<
+      \li<
+        \sh<{pa câses a loc e ces te pet ive saq \s<o> tazît?}>
+        \ja<あなたが彼と会ったのは今日か昨日のどちらですか?>
+      >
+    >
+    \p<
+      選択疑問文を作る方法は、中に選択肢を列挙した {ive} 句で疑問代詞を修飾するものと、疑問代詞を使わずに選択肢を {á} で繋げるものの、2 種類があります。
+      後者の方法では {á} を使うことから、前者の方法でも {á} を使いそうになりますが、それは誤りです。
+    >
+    \wrong<
+      \li<
+        \sh<{pa câses a loc e ces te pet ive saq \s<á> tazît?}>
+      >
+    >
+    \p<
+      選択肢を {á} で繋げる表現では、疑問代詞は使わず、{á} で繋げた語句をそのまま文中に置きます。
+    >
+    \correct<
+      \li<
+        \sh<{pa câses a loc e ces te \s<saq á tazît>?}>
+        \ja<あなたが彼と会ったのは今日か昨日のどちらですか?>
+      >
     >
   >
 
