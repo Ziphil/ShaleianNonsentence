@@ -158,16 +158,20 @@ converter.set("section.first-header") do |element|
     this["background-repeat"] = "no-repeat"
     this << Element.build("fo:block-container") do |this|
       this["width"] = "30mm"
-      this["top"] = "15mm + #{BLEED_SIZE}"
+      this["top"] = "20mm + #{BLEED_SIZE}"
       this["left"] = "0mm + #{BLEED_SIZE}"
       this["font-family"] = SPECIAL_FONT_FAMILY
-      this["font-size"] = "50pt"
+      this["font-size"] = "35pt"
       this["color"] = "white"
       this["letter-spacing"] = "-0.05em"
       this["text-align"] = "center"
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
-        this << ~number.to_s
+        if element.attribute("id").to_s == "layout-test"
+          this << ~"346"
+        else
+          this << ~number.to_s
+        end
       end
     end
     this << Element.build("fo:block-container") do |this|
