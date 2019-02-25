@@ -143,6 +143,9 @@ end
 converter.set("section.first-header") do |element|
   nodes = Nodes[]
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
+  link_ids = element.attribute("rel").to_s.split(/\s*,\s*/)
+  link_numbers = link_ids.map{|s| element.parent.elements.find_index{|t| t.name == "section" && t.attribute("id").to_s == s} + 1}
+  link_numbers.sort!
   nodes << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
     this["height"] = "#{SECTION_FIRST_HEADER_EXTENT} + #{BLEED_SIZE}"
@@ -171,7 +174,7 @@ converter.set("section.first-header") do |element|
       this["width"] = "85mm"
       this["block-progression-dimension"] = "0mm"
       this["block-progression-dimension.maximum"] = "100%"
-      this["bottom"] = "6mm"
+      this["bottom"] = "8mm"
       this["left"] = "43mm + #{BLEED_SIZE}"
       this["font-size"] = "16pt"
       this["line-height"] = "1.1"
@@ -181,6 +184,38 @@ converter.set("section.first-header") do |element|
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
         this << apply(element.each_xpath("title").first, "section.first-header")
+      end
+    end
+    unless link_numbers.empty?
+      this << Element.build("fo:block-container") do |this|
+        this["top"] = "30.5mm + #{BLEED_SIZE}"
+        this["left"] = "43mm + #{BLEED_SIZE}"
+        this["absolute-position"] = "absolute"
+        this << Element.build("fo:block") do |this|
+          this["font-size"] = "0.8em"
+          this << Element.build("fo:inline") do |this|
+            this["margin-right"] = "0.7em"
+            this << ~"関連項目:"
+          end
+          link_numbers.each_with_index do |link_number, i|
+            unless i == 0
+              this << Element.build("fo:inline") do |this|
+                this["margin-left"] = "0.1em"
+                this["margin-right"] = "0.5em"
+                this << ~","
+              end
+            end
+            this << Element.build("fo:basic-link") do |this|
+              this["internal-destination"] = "section.top-#{link_number}"
+              this << Element.build("fo:inline") do |this|
+                this["font-family"] = SPECIAL_FONT_FAMILY
+                this["font-size"] = "1.5em"
+                this["letter-spacing"] = "-0.05em"
+                this << ~link_number.to_s
+              end
+            end
+          end
+        end
       end
     end
   end

@@ -1,7 +1,7 @@
 \zml?|version="1.0"|>
 \xml?|version="1.0",encoding="UTF-8"|>
 
-\section|id="choice-connective"|<
+\section|id="choice-connective",rel="alternative-connective"|<
   \title<選択範囲を表す {ve} 句では選択肢を {o} で繋げる>
 
   \head<
