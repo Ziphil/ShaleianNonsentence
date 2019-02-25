@@ -12,7 +12,7 @@
   ## 全部否定と部分否定を絡めた何かとか
 
   ## 助接詞
-  &import|src="particle_mismatch_japanese.zml"|>
+  &import|src="particle_mismatch.zml"|>
   &import|src="noun_modifying_particle.zml"|>
   &import|src="action_state.zml"|>
   &import|src="resultative_object.zml"|>
