@@ -374,7 +374,7 @@ converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |e
       this["border-bottom-color"] = "black"
     end
     this["border-bottom-style"] = "wave"
-    this["axf:border-wave-form"] = "1.5mm #{BORDER_WIDTH}"
+    this["axf:border-wave-form"] = "0.3em #{BORDER_WIDTH}"
     this << apply(element, scope)
   end
 end
