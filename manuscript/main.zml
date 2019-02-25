@@ -8,6 +8,8 @@
   &import|src="transitive_causative.zml"|>
   &import|src="subject_omission.zml"|>
   &import|src="alternative_connective.zml"|>
+  &import|src="choice_connective.zml"|>
+  ## 全部否定と部分否定を絡めた何かとか
 
   ## 助接詞
   &import|src="particle_mismatch_japanese.zml"|>
@@ -19,6 +21,8 @@
 
   ## 文法
   &import|src="adverb_prefix.zml"|>
+  &import|src="verb_adverb.zml"|>
+  ## 連結詞か助接詞かで pa の有無が変わる話とか 
 
   ## テスト用
   &import|src="layout_test.zml"|>

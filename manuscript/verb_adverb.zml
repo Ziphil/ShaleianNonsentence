@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="verb-adverb"|<
+  \title<動詞を副詞で修飾する際は {vel} を介する>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{}>
+        \ja<>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>
