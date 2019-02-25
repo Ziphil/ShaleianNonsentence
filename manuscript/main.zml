@@ -6,6 +6,7 @@
   ## ?
   &import|src="habit.zml"|>
   &import|src="transitive_causative.zml"|>
+  &import|src="subject_omission.zml"|>
 
   ## 助接詞
   &import|src="particle_mismatch_japanese.zml"|>
@@ -14,6 +15,9 @@
   &import|src="resultative_object.zml"|>
   &import|src="purpose_person.zml"|>
   &import|src="unit_noun.zml"|>
+
+  ## 文法
+  &import|src="adverb_prefix.zml"|>
 
   ## テスト用
   &import|src="layout_test.zml"|>
