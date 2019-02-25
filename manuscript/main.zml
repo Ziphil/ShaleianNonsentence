@@ -23,6 +23,7 @@
   &import|src="adverb_prefix.zml"|>
   &import|src="verb_adverb.zml"|>
   ## 連結詞か助接詞かで pa の有無が変わる話とか 
+  ## 固有名詞を修飾する限定節は非制限用法にする
 
   ## テスト用
   &import|src="layout_test.zml"|>
