@@ -198,7 +198,7 @@ converter.set("section.first-header") do |element|
         this << Element.build("fo:block") do |this|
           this["font-size"] = "0.8em"
           this << Element.build("fo:inline") do |this|
-            this["margin-right"] = "0.7em"
+            this["margin-right"] = "0.6em"
             this << ~"関連項目:"
           end
           link_numbers.each_with_index do |link_number, i|
