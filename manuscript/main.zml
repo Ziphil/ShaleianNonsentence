@@ -7,6 +7,7 @@
   &import|src="habit.zml"|>
   &import|src="transitive_causative.zml"|>
   &import|src="subject_omission.zml"|>
+  &import|src="alternative_connective.zml"|>
 
   ## 助接詞
   &import|src="particle_mismatch_japanese.zml"|>
