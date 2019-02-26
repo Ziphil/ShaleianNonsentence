@@ -15,8 +15,10 @@ converter.set("section.page-master") do |element|
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
     this["axf:bleed"] = BLEED_SIZE
-    this["background-image"] = "url('../material/blank.svg')"
-    this["background-repeat"] = "no-repeat"
+    if DEBUG
+      this["background-image"] = "url('../material/blank.svg')"
+      this["background-repeat"] = "no-repeat"
+    end
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_FIRST_PAGE_TOP_SPACE
@@ -40,8 +42,10 @@ converter.set("section.page-master") do |element|
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
     this["axf:bleed"] = BLEED_SIZE
-    this["background-image"] = "url('../material/blank.svg')"
-    this["background-repeat"] = "no-repeat"
+    if DEBUG
+      this["background-image"] = "url('../material/blank.svg')"
+      this["background-repeat"] = "no-repeat"
+    end
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
@@ -65,8 +69,10 @@ converter.set("section.page-master") do |element|
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
     this["axf:bleed"] = BLEED_SIZE
-    this["background-image"] = "url('../material/blank.svg')"
-    this["background-repeat"] = "no-repeat"
+    if DEBUG
+      this["background-image"] = "url('../material/blank.svg')"
+      this["background-repeat"] = "no-repeat"
+    end
     this << Element.build("fo:region-body") do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
