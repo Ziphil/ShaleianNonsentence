@@ -18,7 +18,7 @@ converter.set("page-number") do |element, position|
         this["right"] = "8mm + #{BLEED_SIZE}"
       end
       this["font-family"] = SPECIAL_FONT_FAMILY
-      this["font-size"] = "10pt"
+      this["font-size"] = "1.1em"
       this["color"] = "white"
       this["text-align"] = "center"
       this["axf:border-top-left-radius"] = "2mm"
@@ -39,7 +39,7 @@ converter.set("page-number") do |element, position|
       end
       this["margin-left"] = "0.5em"
       this["margin-right"] = "0.5em"
-      this["font-size"] = "8pt"
+      this["font-size"] = "0.9em"
       if position == :left
         this["text-align"] = "left"
       else
@@ -47,7 +47,7 @@ converter.set("page-number") do |element, position|
       end
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
-        this["padding-before"] = "1mm"
+        this["padding-before"] = "0.8mm"
         this << Element.build("fo:retrieve-marker") do |this|
           this["retrieve-class-name"] = "section"
         end

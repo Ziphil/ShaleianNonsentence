@@ -181,7 +181,7 @@ converter.set("section.first-header.number") do |element, number|
     this["top"] = "20mm + #{BLEED_SIZE}"
     this["left"] = "0mm + #{BLEED_SIZE}"
     this["font-family"] = SPECIAL_FONT_FAMILY
-    this["font-size"] = "35pt"
+    this["font-size"] = "4em"
     this["color"] = "white"
     this["letter-spacing"] = "-0.05em"
     this["text-align"] = "center"
@@ -205,7 +205,7 @@ converter.set("section.first-header.title") do |element|
     this["block-progression-dimension.maximum"] = "100%"
     this["bottom"] = "8mm"
     this["left"] = "43mm + #{BLEED_SIZE}"
-    this["font-size"] = "16pt"
+    this["font-size"] = "1.6em"
     this["line-height"] = "1.1"
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
@@ -325,7 +325,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
   end
   this << Element.build("fo:block") do |this|
     this["space-after"] = "0.5mm"
-    this["font-size"] = "0pt"
+    this["font-size"] = "0em"
     this["text-align"] = "center"
     this << Element.build("fo:external-graphic") do |this|
       this["src"] = "url('../material/wrong_arrow.svg')"
