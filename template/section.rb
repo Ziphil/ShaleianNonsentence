@@ -161,6 +161,9 @@ converter.set("section.first-header") do |element|
     unless link_numbers.empty?
       this << call(element, "section.first-header.relation", link_numbers)
     end
+    if DEBUG
+      this << call(element, "section.first-header.id")
+    end
   end
   next this
 end
@@ -239,6 +242,22 @@ converter.set("section.first-header.relation") do |element, link_numbers|
           end
         end
       end
+    end
+  end
+  next this
+end
+
+converter.set("section.first-header.id") do |element|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
+    this["top"] = "1mm + #{BLEED_SIZE}"
+    this["right"] = "3mm + #{BLEED_SIZE}"
+    this["absolute-position"] = "absolute"
+    this << Element.build("fo:block") do |this|
+      this["font-size"] = "0.8em"
+      this["color"] = "white"
+      this["text-align"] = "right"
+      this << ~element.attribute("id").to_s
     end
   end
   next this

@@ -1,6 +1,8 @@
 # coding: utf-8
 
 
+DEBUG = true
+
 EUROPIAN_FONT_FAMILY = "Linux Libertine"
 JAPANESE_FONT_FAMILY = "源ノ明朝"
 EUROPIAN_SHALEIA_FONT_FAMILY = "FreeSans"
