@@ -251,12 +251,11 @@ converter.set("section.first-header.id") do |element|
   this = Nodes[]
   this << Element.build("fo:block-container") do |this|
     this["top"] = "1mm + #{BLEED_SIZE}"
-    this["right"] = "3mm + #{BLEED_SIZE}"
+    this["left"] = "3mm + #{BLEED_SIZE}"
     this["absolute-position"] = "absolute"
     this << Element.build("fo:block") do |this|
       this["font-size"] = "0.8em"
       this["color"] = "white"
-      this["text-align"] = "right"
       this << ~element.attribute("id").to_s
     end
   end
