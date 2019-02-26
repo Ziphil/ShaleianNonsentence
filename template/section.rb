@@ -156,68 +156,86 @@ converter.set("section.first-header") do |element|
     this["background-position-vertical"] = "-3mm + #{BLEED_SIZE}"
     this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
-    this << Element.build("fo:block-container") do |this|
-      this["width"] = "30mm"
-      this["top"] = "20mm + #{BLEED_SIZE}"
-      this["left"] = "0mm + #{BLEED_SIZE}"
-      this["font-family"] = SPECIAL_FONT_FAMILY
-      this["font-size"] = "35pt"
-      this["color"] = "white"
-      this["letter-spacing"] = "-0.05em"
-      this["text-align"] = "center"
-      this["absolute-position"] = "absolute"
-      this << Element.build("fo:block") do |this|
-        if element.attribute("id").to_s == "layout-test"
-          this << ~"346"
-        else
-          this << ~number.to_s
-        end
-      end
-    end
-    this << Element.build("fo:block-container") do |this|
-      this["width"] = "85mm"
-      this["block-progression-dimension"] = "0mm"
-      this["block-progression-dimension.maximum"] = "100%"
-      this["bottom"] = "8mm"
-      this["left"] = "43mm + #{BLEED_SIZE}"
-      this["font-size"] = "16pt"
-      this["line-height"] = "1.1"
-      this["text-align"] = "justify"
-      this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
-      this["axf:avoid-widow-words"] = "true"
-      this["absolute-position"] = "absolute"
-      this << Element.build("fo:block") do |this|
-        this << apply(element.each_xpath("title").first, "section.first-header")
-      end
-    end
+    this << call(element, "section.first-header.number", number)
+    this << call(element, "section.first-header.title")
     unless link_numbers.empty?
-      this << Element.build("fo:block-container") do |this|
-        this["top"] = "30.5mm + #{BLEED_SIZE}"
-        this["left"] = "43mm + #{BLEED_SIZE}"
-        this["absolute-position"] = "absolute"
-        this << Element.build("fo:block") do |this|
-          this["font-size"] = "0.8em"
+      this << call(element, "section.first-header.relation", link_numbers)
+    end
+  end
+  next this
+end
+
+converter.set("section.first-header.number") do |element, number|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
+    this["width"] = "30mm"
+    this["top"] = "20mm + #{BLEED_SIZE}"
+    this["left"] = "0mm + #{BLEED_SIZE}"
+    this["font-family"] = SPECIAL_FONT_FAMILY
+    this["font-size"] = "35pt"
+    this["color"] = "white"
+    this["letter-spacing"] = "-0.05em"
+    this["text-align"] = "center"
+    this["absolute-position"] = "absolute"
+    this << Element.build("fo:block") do |this|
+      if element.attribute("id").to_s == "layout-test"
+        this << ~"346"
+      else
+        this << ~number.to_s
+      end
+    end
+  end
+  next this
+end
+
+converter.set("section.first-header.title") do |element|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
+    this["width"] = "85mm"
+    this["block-progression-dimension"] = "0mm"
+    this["block-progression-dimension.maximum"] = "100%"
+    this["bottom"] = "8mm"
+    this["left"] = "43mm + #{BLEED_SIZE}"
+    this["font-size"] = "16pt"
+    this["line-height"] = "1.1"
+    this["text-align"] = "justify"
+    this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
+    this["axf:avoid-widow-words"] = "true"
+    this["absolute-position"] = "absolute"
+    this << Element.build("fo:block") do |this|
+      this << apply(element.each_xpath("title").first, "section.first-header")
+    end
+  end
+  next this
+end
+
+converter.set("section.first-header.relation") do |element, link_numbers|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
+    this["top"] = "30.5mm + #{BLEED_SIZE}"
+    this["left"] = "43mm + #{BLEED_SIZE}"
+    this["absolute-position"] = "absolute"
+    this << Element.build("fo:block") do |this|
+      this["font-size"] = "0.8em"
+      this << Element.build("fo:inline") do |this|
+        this["margin-right"] = "0.6em"
+        this << ~"関連項目:"
+      end
+      link_numbers.each_with_index do |link_number, i|
+        unless i == 0
           this << Element.build("fo:inline") do |this|
-            this["margin-right"] = "0.6em"
-            this << ~"関連項目:"
+            this["margin-left"] = "0.1em"
+            this["margin-right"] = "0.5em"
+            this << ~","
           end
-          link_numbers.each_with_index do |link_number, i|
-            unless i == 0
-              this << Element.build("fo:inline") do |this|
-                this["margin-left"] = "0.1em"
-                this["margin-right"] = "0.5em"
-                this << ~","
-              end
-            end
-            this << Element.build("fo:basic-link") do |this|
-              this["internal-destination"] = "section.top-#{link_number}"
-              this << Element.build("fo:inline") do |this|
-                this["font-family"] = SPECIAL_FONT_FAMILY
-                this["font-size"] = "1.5em"
-                this["letter-spacing"] = "-0.05em"
-                this << ~link_number.to_s
-              end
-            end
+        end
+        this << Element.build("fo:basic-link") do |this|
+          this["internal-destination"] = "section.top-#{link_number}"
+          this << Element.build("fo:inline") do |this|
+            this["font-family"] = SPECIAL_FONT_FAMILY
+            this["font-size"] = "1.5em"
+            this["letter-spacing"] = "-0.05em"
+            this << ~link_number.to_s
           end
         end
       end
