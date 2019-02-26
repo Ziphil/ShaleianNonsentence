@@ -9,8 +9,8 @@ SECTION_CONTENT_SPACE = "2em"
 SECTION_SEPARATOR_SPACE = "1em"
 
 converter.set("section.page-master") do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:simple-page-master") do |this|
+  this = Nodes[]
+  this << Element.build("fo:simple-page-master") do |this|
     this["master-name"] = "section.first"
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
@@ -35,7 +35,7 @@ converter.set("section.page-master") do |element|
       this["precedence"] = "true"
     end
   end
-  nodes << Element.build("fo:simple-page-master") do |this|
+  this << Element.build("fo:simple-page-master") do |this|
     this["master-name"] = "section.left"
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
@@ -60,7 +60,7 @@ converter.set("section.page-master") do |element|
       this["precedence"] = "true"
     end
   end
-  nodes << Element.build("fo:simple-page-master") do |this|
+  this << Element.build("fo:simple-page-master") do |this|
     this["master-name"] = "section.right"
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
@@ -85,7 +85,7 @@ converter.set("section.page-master") do |element|
       this["precedence"] = "true"
     end
   end
-  nodes << Element.build("fo:page-sequence-master") do |this|
+  this << Element.build("fo:page-sequence-master") do |this|
     this["master-name"] = "section"
     this << Element.build("fo:repeatable-page-master-alternatives") do |this|
       this << Element.build("fo:conditional-page-master-reference") do |this|
@@ -102,12 +102,12 @@ converter.set("section.page-master") do |element|
       end
     end
   end
-  next nodes
+  next this
 end
 
 converter.add(["section"], [""]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:page-sequence") do |this|
+  this = Nodes[]
+  this << Element.build("fo:page-sequence") do |this|
     this["master-reference"] = "section"
     this["initial-page-number"] = "auto-even"
     this << Element.build("fo:static-content") do |this|
@@ -137,16 +137,16 @@ converter.add(["section"], [""]) do |element|
       end
     end
   end
-  next nodes
+  next this
 end
 
 converter.set("section.first-header") do |element|
-  nodes = Nodes[]
+  this = Nodes[]
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   link_ids = element.attribute("rel").to_s.split(/\s*,\s*/)
   link_numbers = link_ids.map{|s| element.parent.elements.find_index{|t| t.name == "section" && t.attribute("id").to_s == s} + 1}
   link_numbers.sort!
-  nodes << Element.build("fo:block-container") do |this|
+  this << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
     this["height"] = "#{SECTION_FIRST_HEADER_EXTENT} + #{BLEED_SIZE}"
     this["margin-top"] = "-1 * #{BLEED_SIZE}"
@@ -223,12 +223,12 @@ converter.set("section.first-header") do |element|
       end
     end
   end
-  next nodes
+  next this
 end
 
 converter.set("section.right-header") do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block-container") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
     this["height"] = "#{SECTION_HEADER_EXTENT} + #{BLEED_SIZE}"
     this["margin-top"] = "-1 * #{BLEED_SIZE}"
     this["margin-left"] = "-1 * #{BLEED_SIZE}"
@@ -238,20 +238,20 @@ converter.set("section.right-header") do |element|
     this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
   end
-  next nodes
+  next this
 end
 
 converter.add(["head"], ["section"]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     this << apply(element, "section.head")
   end
-  next nodes
+  next this
 end
 
 converter.add(["wrong"], ["section.head"]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block-container") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
     this << Element.build("fo:block-container") do |this|
       this << Element.build("fo:block") do |this|
         this["top"] = "0mm"
@@ -267,7 +267,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
         this["axf:border-radius"] = "2mm"
         this["background-color"] = BORDER_COLOR
         this["absolute-position"] = "absolute"
-        this << apply(element, "section.head.wrong")
+        this << apply(element, "section.head.example", :wrong)
       end
     end
     this << Element.build("fo:block-container") do |this|
@@ -281,7 +281,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
       end
     end
   end
-  nodes << Element.build("fo:block") do |this|
+  this << Element.build("fo:block") do |this|
     this["space-after"] = "0.5mm"
     this["font-size"] = "0pt"
     this["text-align"] = "center"
@@ -289,12 +289,12 @@ converter.add(["wrong"], ["section.head"]) do |element|
       this["src"] = "url('../material/wrong_arrow.svg')"
     end
   end
-  next nodes
+  next this
 end
 
-converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+converter.add(["correct", "wrong"], ["section.head", "section.content"]) do |element, scope|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     if scope.include?("content")
       this["space-before"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
       this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
@@ -311,45 +311,45 @@ converter.add(["correct", "wrong"], [/section\.(head|content)/]) do |element, sc
     this["padding-right"] = "3mm"
     this["line-height"] = LINE_HEIGHT
     this["axf:border-radius"] = "2mm"
-    if element.name.include?("wrong")
+    if element.name == "wrong"
       this["color"] = "white"
       this["background-color"] = BORDER_COLOR
     else
       this["background-color"] = BACKGROUND_COLOR
     end
-    this << apply(element, scope + "." + element.name)
+    this << apply(element, scope + ".example", element.name.intern)
   end
-  next nodes
+  next this
 end
 
-converter.add(["li"], [/section\.(head|content)\.(wrong|correct)/]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
-    this << apply(element, scope + ".li")
+converter.add(["li"], ["section.head.example", "section.content.example"]) do |element, scope, type|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
+    this << apply(element, scope + ".li", type)
   end
-  next nodes
+  next this
 end
 
-converter.add(["sh"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+converter.add(["sh"], ["section.head.example.li", "section.content.example.li"]) do |element, scope, type|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     this["font-size"] = "1.2em"
     this << Element.build("fo:external-graphic") do |this|
       this["margin-right"] = "0.4em"
-      if scope.include?("wrong")
+      if type == :wrong
         this["src"] = "url('../material/wrong_mark.svg')"
       else
         this["src"] = "url('../material/correct_mark.svg')"
       end
     end
-    this << apply(element, scope + ".sh")
+    this << apply(element, scope + ".sh", type)
   end
-  next nodes
+  next this
 end
 
-converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+converter.add(["ja"], ["section.head.example.li", "section.content.example.li"]) do |element, scope, type|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     this["margin-left"] = "0.8em"
     this["keep-with-previous.within-page"] = "always"
     this["keep-with-previous.within-column"] = "always"
@@ -358,30 +358,30 @@ converter.add(["ja"], [/section\.(head|content)\.(wrong|correct)\.li/]) do |elem
       this["baseline-shift"] = "0.1em"
       this["src"] = "url('../material/translation_arrow.svg')"
     end
-    this << apply(element, scope + ".ja")
+    this << apply(element, scope + ".ja", type)
   end
-  next nodes
+  next this
 end
 
-converter.add(["s"], [/section\.(head|content)\.(wrong|correct)\.li\.sh/]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:inline") do |this|
+converter.add(["s"], ["section.head.example.li.sh", "section.content.example.li.sh"]) do |element, scope, type|
+  this = Nodes[]
+  this << Element.build("fo:inline") do |this|
     this["padding-bottom"] = "0.05em"
     this["border-bottom-width"] = BORDER_WIDTH
-    if scope.include?("wrong")
+    if type == :wrong
       this["border-bottom-color"] = "white"
     else
       this["border-bottom-color"] = "black"
     end
     this["border-bottom-style"] = "wave"
     this["axf:border-wave-form"] = "0.3em #{BORDER_WIDTH}"
-    this << apply(element, scope)
+    this << apply(element, scope, type)
   end
 end
 
 converter.add(["content"], ["section"]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     this["space-before"] = SECTION_CONTENT_SPACE
     this["space-after"] = SECTION_SEPARATOR_SPACE
     this["margin-left"] = "-3mm"
@@ -390,16 +390,16 @@ converter.add(["content"], ["section"]) do |element|
       this["src"] = "url('../material/content_separator.svg')"
     end
   end
-  nodes << Element.build("fo:block") do |this|
+  this << Element.build("fo:block") do |this|
     this["space-before"] = SECTION_SEPARATOR_SPACE
     this << apply(element, "section.content")
   end
-  next nodes
+  next this
 end
 
 converter.add(["p"], ["section.content"]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
     this["space-before"] = PARAGRAPH_SPACE
     this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
     this["space-before.minimum"] = "#{PARAGRAPH_SPACE} * #{MINIMUM_RATIO}"
@@ -413,11 +413,11 @@ converter.add(["p"], ["section.content"]) do |element|
     this["orphans"] = "1"
     this << apply(element, "section.content.p")
   end
-  next nodes
+  next this
 end
 
 converter.add(nil, ["section.content.p"]) do |text|
-  nodes = Nodes[]
-  nodes << ~text.to_s.gsub(/(?<=。)\s*\n\s*/, "")
-  next nodes
+  this = Nodes[]
+  this << ~text.to_s.gsub(/(?<=。)\s*\n\s*/, "")
+  next this
 end

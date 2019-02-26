@@ -35,8 +35,8 @@ FONT_FAMILY = EUROPIAN_FONT_FAMILY + ", " + JAPANESE_FONT_FAMILY
 SHALEIA_FONT_FAMILY = EUROPIAN_SHALEIA_FONT_FAMILY + ", " + JAPANESE_SHALEIA_FONT_FAMILY
 
 converter.add(["root"], [""]) do |element|
-  nodes = Nodes[]
-  nodes << Element.build("fo:root") do |this|
+  this = Nodes[]
+  this << Element.build("fo:root") do |this|
     this["xmlns:fo"] = "http://www.w3.org/1999/XSL/Format"
     this["xmlns:axf"] = "http://www.antennahouse.com/names/XSL/Extensions"
     this["xml:lang"] = "ja"
@@ -51,30 +51,30 @@ converter.add(["root"], [""]) do |element|
     end
     this << apply(element, "")
   end
-  next nodes
+  next this
 end
 
-converter.add(["x", "xn"], [lambda{|_| true}]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:inline") do |this|
+converter.add(["x", "xn"], [//]) do |element, scope, *args|
+  this = Nodes[]
+  this << Element.build("fo:inline") do |this|
     this["font-family"] = SHALEIA_FONT_FAMILY
     this["font-size"] = SHALEIA_FONT_SIZE
-    this << apply(element, scope)
+    this << apply(element, scope, *args)
   end
-  next nodes
+  next this
 end
 
-converter.add(["i"], [lambda{|_| true}]) do |element, scope|
-  nodes = Nodes[]
-  nodes << Element.build("fo:inline") do |this|
+converter.add(["i"], [//]) do |element, scope, *args|
+  this = Nodes[]
+  this << Element.build("fo:inline") do |this|
     this["font-style"] = "italic"
-    this << apply(element, scope)
+    this << apply(element, scope, *args)
   end
-  next nodes
+  next this
 end
 
 converter.add_default(nil) do |text|
-  nodes = Nodes[]
-  nodes << ~text.to_s
-  next nodes
+  this = Nodes[]
+  this << ~text.to_s
+  next this
 end

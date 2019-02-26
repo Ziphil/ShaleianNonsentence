@@ -2,8 +2,8 @@
 
 
 converter.set("page-number") do |element, position|
-  nodes = Nodes[]
-  nodes << Element.build("fo:block-container") do |this|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
     this["height"] = "#{FOOTER_EXTENT} + #{BLEED_SIZE}"
     this["margin-bottom"] = "-1 * #{BLEED_SIZE}"
     this["margin-left"] = "-1 * #{BLEED_SIZE}"
@@ -54,5 +54,5 @@ converter.set("page-number") do |element, position|
       end
     end
   end
-  next nodes
+  next this
 end
