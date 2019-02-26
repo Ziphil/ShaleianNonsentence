@@ -1,0 +1,62 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="imperative-omission",rel="subject-omission"|<
+  \title<命令文での命令対象を表す {loc} は省略できない>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{di'teyelis e sokul afik.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{di'teyelis \s<a'c> e sokul afik.}>
+        \ja<この部屋を掃除して。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+      命令文における命令対象を表す {loc} は省略できません。
+      これは、省略されている助詞句に関しては「何らかの人」や「何らかのもの」が省略されたと解釈されるため、命令対象の {loc} を明示しないと、命令対象が明確に {loc} であることが暗示されないからです。
+      以下のように、{loc} を明示するのが正しい表現です。
+    >
+    \correct<
+      \li<
+        \sh<{di'teyelis \s<a loc> e sokul afik.}>
+        \ja<この部屋を掃除して。>
+      >
+    >
+    \p<
+      基本的に主語を省略しない英語でも、命令対象の you を明示することは基本的にないので、それにつられてシャレイア語でも {loc} を省略したくなりますが、それは誤りです。
+    >
+    \wrong<
+      \li<
+        \sh<{di'teyelis e sokul afik.}>
+      >
+    >
+    \p<
+      なお、{loc} には {'c} という縮約形があり、命令文では {'c} を用いた形の方が好まれます。
+      通常、縮約形は同じ文中で 2 回目以降に出てきた場合に用いられますが、命令文の {loc} については 1 回目でも例外的に縮約形を用いることができます。
+    >
+    \correct<
+      \li<
+        \sh<{di'teyelis \s<a'c> e sokul afik.}>
+      >
+    >
+    \p<
+      命令内容に {zál} があると「～しましょう」という勧誘の表現になりますが、当然この {zál} も省略できません。
+      上に述べたような理由もありますし、{zál} を省略してしまうと、命令対象が {loc} なのか {zál} なのか分からなくなるためという理由もあります。
+    >
+    \correct<
+      \li<
+        \sh<{di'rahitis \s<a zál> te tacál e rakal.}>
+        \ja<明日はゲームをして遊びましょう。>
+      >
+    >
+  >
+
+>

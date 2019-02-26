@@ -7,9 +7,11 @@
   &import|src="habit.zml"|>
   &import|src="transitive_causative.zml"|>
   &import|src="subject_omission.zml"|>
+  &import|src="imperative_omission.zml"|>
   &import|src="alternative_connective.zml"|>
   &import|src="choice_connective.zml"|>
   ## 全部否定と部分否定を絡めた何かとか
+  ## kil と qif の使い分け
 
   ## 助接詞
   &import|src="particle_mismatch.zml"|>
