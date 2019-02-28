@@ -18,6 +18,7 @@
   &import|src="noun_modifying_particle.zml"|>
   &import|src="action_state.zml"|>
   &import|src="resultative_object.zml"|>
+  &import|src="resultative_state.zml"|>
   &import|src="purpose_person.zml"|>
   &import|src="unit_noun.zml"|>
 
