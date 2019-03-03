@@ -58,12 +58,12 @@ class Converter
 
   def apply(element, scope, *args)
     nodes = Nodes[]
-    element.children.each do |inner_element|
-      case inner_element
+    element.children.each do |child|
+      case child
       when Element
-        nodes << convert_element(inner_element, scope, *args)
+        nodes << convert_element(child, scope, *args)
       when Text
-        nodes << convert_text(inner_element, scope, *args)
+        nodes << convert_text(child, scope, *args)
       end
     end
     return nodes
