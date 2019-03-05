@@ -12,6 +12,7 @@ converter.add(["part"], ["bookmark-tree.part"]) do |element|
   number = element.each_xpath("preceding-sibling::part").to_a.size + 1
   title = element.each_xpath("title").first.inner_text
   this << Element.build("fo:bookmark") do |this|
+    this["internal-destination"] = "part.top-#{number}"
     this["starting-state"] = "show"
     this << Element.build("fo:bookmark-title") do |this|
       this << ~title
