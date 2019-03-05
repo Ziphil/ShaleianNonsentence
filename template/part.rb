@@ -4,7 +4,25 @@
 converter.set("part.page-master") do |element|
   this = Nodes[]
   this << Element.build("fo:simple-page-master") do |this|
-    this["master-name"] = "part.first"
+    this["master-name"] = "part.left"
+    this["page-width"] = PAGE_WIDTH
+    this["page-height"] = PAGE_HEIGHT
+    this["axf:bleed"] = BLEED_SIZE
+    if DEBUG
+      this["background-image"] = "url('../material/blank.svg')"
+      this["background-repeat"] = "no-repeat"
+    end
+    this << Element.build("fo:region-body") do |this|
+      this["region-name"] = "part.dammy"
+    end
+    this << Element.build("fo:region-after") do |this|
+      this["region-name"] = "part.left-footer"
+      this["extent"] = FOOTER_EXTENT
+      this["precedence"] = "true"
+    end
+  end
+  this << Element.build("fo:simple-page-master") do |this|
+    this["master-name"] = "part.right"
     this["page-width"] = PAGE_WIDTH
     this["page-height"] = PAGE_HEIGHT
     this["axf:bleed"] = BLEED_SIZE
@@ -20,7 +38,7 @@ converter.set("part.page-master") do |element|
       this["margin-left"] = PAGE_INNER_SPACE
     end
     this << Element.build("fo:region-before") do |this|
-      this["region-name"] = "part.first-header"
+      this["region-name"] = "part.right-header"
       this["extent"] = HEADER_EXTENT
       this["precedence"] = "true"
     end
@@ -34,8 +52,12 @@ converter.set("part.page-master") do |element|
     this["master-name"] = "part"
     this << Element.build("fo:repeatable-page-master-alternatives") do |this|
       this << Element.build("fo:conditional-page-master-reference") do |this|
-        this["master-reference"] = "part.first"
-        this["page-position"] = "first"
+        this["master-reference"] = "part.left"
+        this["odd-or-even"] = "even"
+      end
+      this << Element.build("fo:conditional-page-master-reference") do |this|
+        this["master-reference"] = "part.right"
+        this["odd-or-even"] = "odd"
       end
     end
   end
@@ -46,10 +68,14 @@ converter.add(["part"], [""]) do |element|
   this = Nodes[]
   this << Element.build("fo:page-sequence") do |this|
     this["master-reference"] = "part"
-    this["initial-page-number"] = "auto-odd"
+    this["initial-page-number"] = "auto-even"
     this << Element.build("fo:static-content") do |this|
-      this["flow-name"] = "part.first-header"
-      this << call(element, "part.first-header")
+      this["flow-name"] = "part.right-header"
+      this << call(element, "part.right-header")
+    end
+    this << Element.build("fo:static-content") do |this|
+      this["flow-name"] = "part.left-footer"
+      this << call(element, "page-number", :left)
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "part.right-footer"
@@ -65,7 +91,7 @@ converter.add(["part"], [""]) do |element|
   next this
 end
 
-converter.set("part.first-header") do |element|
+converter.set("part.right-header") do |element|
   this = Nodes[]
   number = element.each_xpath("preceding-sibling::part").to_a.size + 1
   this << Element.build("fo:block-container") do |this|
