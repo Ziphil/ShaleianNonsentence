@@ -67,7 +67,7 @@ end
 
 converter.add(["title"], ["part"]) do |element|
   this = Nodes[]
-  number = element.each_xpath("preceding-sibling::part").to_a.size + 1
+  number = element.parent.each_xpath("preceding-sibling::part").to_a.size + 1
   this << Element.build("fo:block") do |this|
     this["margin-top"] = "20mm"
     this["margin-bottom"] = "-7mm"
