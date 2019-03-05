@@ -86,3 +86,15 @@ converter.add(["title"], ["part"]) do |element|
   end
   next this
 end
+
+converter.add(["description"], ["part"]) do |element|
+  this = Nodes[]
+  this << Element.build("fo:block") do |this|
+    this["margin-top"] = "8mm"
+    this["line-height"] = LINE_HEIGHT
+    this["text-align"] = "justify"
+    this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
+    this << apply(element, "part.description")
+  end
+  next this
+end
