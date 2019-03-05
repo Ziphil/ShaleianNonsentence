@@ -67,9 +67,20 @@ end
 
 converter.add(["title"], ["part"]) do |element|
   this = Nodes[]
+  number = element.each_xpath("preceding-sibling::part").to_a.size + 1
+  this << Element.build("fo:block") do |this|
+    this["margin-top"] = "20mm"
+    this["margin-bottom"] = "-7mm"
+    this["font-family"] = SPECIAL_FONT_FAMILY
+    this["font-size"] = "7em"
+    this["color"] = BORDER_COLOR
+    this["line-height"] = "1"
+    this["text-align"] = "center"
+    this << ~number.to_s
+  end
   this << Element.build("fo:block-container") do |this|
     this["height"] = "30mm"
-    this["margin-top"] = "30mm"
+    this["margin-top"] = "-7mm"
     this["margin-left"] = "-1 * #{BLEED_SIZE} - #{PAGE_INNER_SPACE}"
     this["margin-right"] = "-1 * #{BLEED_SIZE} - #{PAGE_OUTER_SPACE}"
     this["padding-left"] = "#{BLEED_SIZE} + #{PAGE_INNER_SPACE}"
