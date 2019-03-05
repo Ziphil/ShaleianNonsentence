@@ -150,7 +150,11 @@ converter.set("section.first-header") do |element|
   this = Nodes[]
   number = element.each_xpath("preceding-sibling::section").to_a.size + 1
   link_ids = element.attribute("rel").to_s.split(/\s*,\s*/)
-  link_numbers = link_ids.map{|s| element.parent.elements.find_index{|t| t.name == "section" && t.attribute("id").to_s == s} + 1}
+  link_numbers = link_ids.map do |link_id|
+    section_elements = element.parent.elements.select{|s| s.name == "section"}
+    section_number = section_elements.find_index{|s| s.attribute("id").to_s == link_id} + 1
+    next section_number
+  end
   link_numbers.sort!
   this << Element.build("fo:block-container") do |this|
     this["id"] = "section.top-#{number}"
