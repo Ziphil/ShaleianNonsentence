@@ -3,6 +3,8 @@
 
 \root<
 
+  &import|src="part_usage.zml"|>
+
   ## ?
   &import|src="habit.zml"|>
   &import|src="transitive_causative.zml"|>
