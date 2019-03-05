@@ -69,6 +69,19 @@ class Converter
     return nodes
   end
 
+  def apply_select(element, xpath, scope, *args)
+    nodes = Nodes[]
+    element.each_xpath(xpath).each do |child|
+      case child
+      when Element
+        nodes << convert_element(child, scope, *args)
+      when Text
+        nodes << convert_text(child, scope, *args)
+      end
+    end
+    return nodes
+  end
+
   def call(element, name, *args)
     nodes = Nodes[]
     @functions.each do |function_name, block|
