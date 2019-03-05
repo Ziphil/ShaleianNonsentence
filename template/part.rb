@@ -21,7 +21,12 @@ converter.set("part.page-master") do |element|
     end
     this << Element.build("fo:region-before") do |this|
       this["region-name"] = "part.first-header"
-      this["extent"] = "0mm"
+      this["extent"] = HEADER_EXTENT
+      this["precedence"] = "true"
+    end
+    this << Element.build("fo:region-after") do |this|
+      this["region-name"] = "part.right-footer"
+      this["extent"] = FOOTER_EXTENT
       this["precedence"] = "true"
     end
   end
@@ -45,6 +50,10 @@ converter.add(["part"], [""]) do |element|
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "part.first-header"
       this << call(element, "part.first-header")
+    end
+    this << Element.build("fo:static-content") do |this|
+      this["flow-name"] = "part.right-footer"
+      this << call(element, "page-number", :right)
     end
     this << Element.build("fo:flow") do |this|
       this["flow-name"] = "part.body"
