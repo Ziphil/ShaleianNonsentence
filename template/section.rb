@@ -16,69 +16,40 @@ converter.set("section.page-master") do |element|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_FIRST_PAGE_TOP_SPACE
     end
-    this << Element.build("fo:region-before") do |this|
+    this << Element.build_region_before do |this|
       this["region-name"] = "section.first-header"
       this["extent"] = SECTION_FIRST_HEADER_EXTENT
-      this["precedence"] = "true"
     end
-    this << Element.build("fo:region-after") do |this|
+    this << Element.build_region_after do |this|
       this["region-name"] = "section.left-footer"
-      this["extent"] = FOOTER_EXTENT
-      this["precedence"] = "true"
     end
   end
-  this << Element.build("fo:simple-page-master") do |this|
+  this << Element.build_page_master do |this|
     this["master-name"] = "section.left"
-    this["page-width"] = PAGE_WIDTH
-    this["page-height"] = PAGE_HEIGHT
-    this["axf:bleed"] = BLEED_SIZE
-    if DEBUG
-      this["background-image"] = "url('../material/blank.svg')"
-      this["background-repeat"] = "no-repeat"
-    end
-    this << Element.build("fo:region-body") do |this|
+    this << Element.build_region_body(:left) do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
-      this["margin-right"] = PAGE_INNER_SPACE
-      this["margin-bottom"] = PAGE_BOTTOM_SPACE
-      this["margin-left"] = PAGE_OUTER_SPACE
     end
-    this << Element.build("fo:region-before") do |this|
+    this << Element.build_region_before do |this|
       this["region-name"] = "section.right-header"
       this["extent"] = SECTION_HEADER_EXTENT
-      this["precedence"] = "true"
     end
-    this << Element.build("fo:region-after") do |this|
+    this << Element.build_region_after do |this|
       this["region-name"] = "section.left-footer"
-      this["extent"] = FOOTER_EXTENT
-      this["precedence"] = "true"
     end
   end
-  this << Element.build("fo:simple-page-master") do |this|
+  this << Element.build_page_master do |this|
     this["master-name"] = "section.right"
-    this["page-width"] = PAGE_WIDTH
-    this["page-height"] = PAGE_HEIGHT
-    this["axf:bleed"] = BLEED_SIZE
-    if DEBUG
-      this["background-image"] = "url('../material/blank.svg')"
-      this["background-repeat"] = "no-repeat"
-    end
-    this << Element.build("fo:region-body") do |this|
+    this << Element.build_region_body(:right) do |this|
       this["region-name"] = "section.body"
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
-      this["margin-right"] = PAGE_OUTER_SPACE
-      this["margin-bottom"] = PAGE_BOTTOM_SPACE
-      this["margin-left"] = PAGE_INNER_SPACE
     end
-    this << Element.build("fo:region-before") do |this|
+    this << Element.build_region_before do |this|
       this["region-name"] = "section.right-header"
       this["extent"] = SECTION_HEADER_EXTENT
-      this["precedence"] = "true"
     end
-    this << Element.build("fo:region-after") do |this|
+    this << Element.build_region_after do |this|
       this["region-name"] = "section.right-footer"
-      this["extent"] = FOOTER_EXTENT
-      this["precedence"] = "true"
     end
   end
   this << Element.build("fo:page-sequence-master") do |this|

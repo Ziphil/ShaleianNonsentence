@@ -3,49 +3,25 @@
 
 converter.set("part.page-master") do |element|
   this = Nodes[]
-  this << Element.build("fo:simple-page-master") do |this|
+  this << Element.build_page_master do |this|
     this["master-name"] = "part.left"
-    this["page-width"] = PAGE_WIDTH
-    this["page-height"] = PAGE_HEIGHT
-    this["axf:bleed"] = BLEED_SIZE
-    if DEBUG
-      this["background-image"] = "url('../material/blank.svg')"
-      this["background-repeat"] = "no-repeat"
-    end
-    this << Element.build("fo:region-body") do |this|
+    this << Element.build_region_body(:left) do |this|
       this["region-name"] = "part.dammy"
     end
-    this << Element.build("fo:region-after") do |this|
+    this << Element.build_region_after do |this|
       this["region-name"] = "part.left-footer"
-      this["extent"] = FOOTER_EXTENT
-      this["precedence"] = "true"
     end
   end
-  this << Element.build("fo:simple-page-master") do |this|
+  this << Element.build_page_master do |this|
     this["master-name"] = "part.right"
-    this["page-width"] = PAGE_WIDTH
-    this["page-height"] = PAGE_HEIGHT
-    this["axf:bleed"] = BLEED_SIZE
-    if DEBUG
-      this["background-image"] = "url('../material/blank.svg')"
-      this["background-repeat"] = "no-repeat"
-    end
-    this << Element.build("fo:region-body") do |this|
+    this << Element.build_region_body(:right) do |this|
       this["region-name"] = "part.body"
-      this["margin-top"] = PAGE_TOP_SPACE
-      this["margin-right"] = PAGE_OUTER_SPACE
-      this["margin-bottom"] = PAGE_BOTTOM_SPACE
-      this["margin-left"] = PAGE_INNER_SPACE
     end
-    this << Element.build("fo:region-before") do |this|
+    this << Element.build_region_before do |this|
       this["region-name"] = "part.right-header"
-      this["extent"] = HEADER_EXTENT
-      this["precedence"] = "true"
     end
-    this << Element.build("fo:region-after") do |this|
+    this << Element.build_region_after do |this|
       this["region-name"] = "part.right-footer"
-      this["extent"] = FOOTER_EXTENT
-      this["precedence"] = "true"
     end
   end
   this << Element.build("fo:page-sequence-master") do |this|

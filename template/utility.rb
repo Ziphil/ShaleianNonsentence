@@ -30,4 +30,24 @@ class Element
     return this
   end
 
+  def self.build_region_before(&block)
+    this = Nodes[]
+    this << Element.build("fo:region-before") do |this|
+      this["extent"] = HEADER_EXTENT
+      this["precedence"] = "true"
+      block&.call(this)
+    end
+    return this
+  end
+
+  def self.build_region_after(&block)
+    this = Nodes[]
+    this << Element.build("fo:region-after") do |this|
+      this["extent"] = FOOTER_EXTENT
+      this["precedence"] = "true"
+      block&.call(this)
+    end
+    return this
+  end
+
 end
