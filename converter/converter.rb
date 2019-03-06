@@ -82,11 +82,11 @@ class Converter
     return nodes
   end
 
-  def call(element, name, *args)
+  def call(element, name, *args, &arg_block)
     nodes = Nodes[]
     @functions.each do |function_name, block|
       if function_name == name
-        nodes = block.call(element, *args)
+        nodes = block.call(element, *args, &arg_block)
         break
       end
     end
