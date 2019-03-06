@@ -38,7 +38,7 @@ class Converter
     nodes = nil
     @templates.each do |(element_pattern, scope_pattern), block|
       if element_pattern != nil && element_pattern.any?{|s| s === element.name} && scope_pattern.any?{|s| s === scope}
-        nodes = block.call(element, scope, *args)
+        nodes = instance_exec(element, scope, *args, &block)
         break
       end
     end
@@ -49,7 +49,7 @@ class Converter
     nodes = nil
     @templates.each do |(element_pattern, scope_pattern), block|
       if element_pattern == nil && scope_pattern.any?{|s| s === scope}
-        nodes = block.call(text, scope, *args)
+        nodes = instance_exec(text, scope, *args, &block)
         break
       end
     end
@@ -82,11 +82,11 @@ class Converter
     return nodes
   end
 
-  def call(element, name, *args, &arg_block)
+  def call(element, name, *args)
     nodes = Nodes[]
     @functions.each do |function_name, block|
       if function_name == name
-        nodes = block.call(element, *args, &arg_block)
+        nodes = instance_exec(element, *args, &block)
         break
       end
     end
@@ -147,8 +147,10 @@ class WholeZiphilConverter
   def create_converter(document)
     converter = Converter.new(document)
     Dir.each_child(TEMPLATE_DIR) do |entry|
-      if entry =~ /\.rb/
-        converter.instance_eval(File.read(TEMPLATE_DIR + "/" + entry), entry)
+      if entry.end_with?(".rb")
+        binding = TOPLEVEL_BINDING
+        binding.local_variable_set(:converter, converter)
+        Kernel.eval(File.read(TEMPLATE_DIR + "/" + entry), binding, entry)
       end
     end
     return converter
@@ -162,5 +164,5 @@ class WholeZiphilConverter
 end
 
 
-converter = WholeZiphilConverter.new
-converter.save
+whole_converter = WholeZiphilConverter.new
+whole_converter.save
