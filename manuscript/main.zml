@@ -3,6 +3,8 @@
 
 \root<
 
+  \content-table>
+
   &import|src="part/grammar.zml"|>
 
   ## ?

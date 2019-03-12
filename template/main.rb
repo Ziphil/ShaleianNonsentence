@@ -48,6 +48,7 @@ converter.add(["root"], [""]) do |element|
     this << Element.build("fo:layout-master-set") do |this|
       this << call(element, "section.page-master")
       this << call(element, "part.page-master")
+      this << call(element, "content-table.page-master")
     end
     this << Element.build("fo:bookmark-tree") do |this|
       this << call(element, "bookmark-tree")
