@@ -3,10 +3,21 @@
 
 class Element
 
+  DEBUG_COLORS = ["#FF888888", "#8888FF88", "#88FF8888", "#FF88FF88"]
+
   def make_elastic(clazz)
     original_space = self[clazz]
     self["#{clazz}.maximum"] = "(#{original_space}) * #{MAXIMUM_RATIO}"
     self["#{clazz}.minimum"] = "(#{original_space}) * #{MINIMUM_RATIO}"
+  end
+
+  def reset_indent
+    self["start-indent"] = "0mm"
+    self["end-indent"] = "0mm"
+  end
+
+  def debug(number)
+    self["background-color"] = DEBUG_COLORS[number]
   end
 
   def self.build_page_master(&block)
