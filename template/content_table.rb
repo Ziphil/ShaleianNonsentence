@@ -1,6 +1,9 @@
 # coding: utf-8
 
 
+CONTENT_TABLE_PART_SPACE = "6mm"
+CONTENT_TABLE_SECTION_SPACE = "0.5mm"
+
 converter.set("content-table.page-master") do |element|
   this = Nodes[]
   this << Element.build_page_master do |this|
@@ -73,7 +76,7 @@ converter.add(["content-table"], [""]) do |element|
     this << Element.build("fo:flow") do |this|
       this["flow-name"] = "content-table.body"
       this << Element.build("fo:block") do |this|
-        this << call(element, "content-table.main")
+        this << apply_select(element, "/root/*", "content-table.part")
       end
     end
   end
@@ -88,8 +91,96 @@ converter.set("content-table.first-header") do |element|
   next this
 end
 
-converter.set("content-table.main") do |element|
+converter.add(["part"], ["content-table.part"]) do |element|
   this = Nodes[]
-  this << ~"≡╹ω╹≡"
+  number = element.each_xpath("preceding-sibling::part").to_a.size + 1
+  title = element.each_xpath("title").first.inner_text
+  this << Element.build("fo:block") do |this|
+    this["space-before"] = CONTENT_TABLE_PART_SPACE
+    this["space-after"] = CONTENT_TABLE_PART_SPACE
+    this.make_elastic("space-before")
+    this.make_elastic("space-after")
+    this << Element.build("fo:block-container") do |this|
+      this["margin-left"] = "0mm"
+      this["margin-right"] = "0mm"
+      this["padding-after"] = "1mm"
+      this["padding-left"] = "1mm"
+      this["padding-right"] = "1mm"
+      this["border-bottom-width"] = "0.5mm"
+      this["border-bottom-color"] = BORDER_COLOR
+      this["border-bottom-style"] = "solid"
+      this << Element.build("fo:block") do |this|
+        this["font-size"] = "1.2em"
+        this["color"] = "black"
+        this["line-height"] = "1"
+        this << ~title
+      end
+    end
+    this << Element.build("fo:block") do |this|
+      this["margin-right"] = "0mm"
+      this["padding-before"] = "1mm"
+      this["padding-after"] = "1mm"
+      this["padding-right"] = "0.5mm"
+      this["background-image"] = "url('../material/content_table_bar.svg')"
+      this["background-repeat"] = "no-repeat"
+      this["background-position-vertical"] = "bottom"
+      this << apply_select(element, "following-sibling::section[count(preceding-sibling::part) = #{number}]", "content-table.section")
+    end
+  end
+  next this
+end
+
+converter.add(["section"], ["content-table.section"]) do |element|
+  this = Nodes[]
+  number = element.each_xpath("preceding-sibling::section").to_a.size + 1
+  title = element.each_xpath("title").first.inner_text
+  this << Element.build("fo:block") do |this|
+    this["space-before"] = CONTENT_TABLE_SECTION_SPACE
+    this["space-after"] = CONTENT_TABLE_SECTION_SPACE
+    this.make_elastic("space-before")
+    this.make_elastic("space-after")
+    this["line-height"] = LINE_HEIGHT
+    this["text-align-last"] = "justify"
+    this << Element.build("fo:inline-container") do |this|
+      this["width"] = "10mm"
+      this["margin-right"] = "0.5em"
+      this["alignment-baseline"] = "central"
+      this << Element.build("fo:block") do |this|
+        this.reset_indent
+        this["font-family"] = SPECIAL_FONT_FAMILY
+        this["font-size"] = "1.4em"
+        this["color"] = "white"
+        this["line-height"] = "0"
+        this["text-align-last"] = "center"
+        this << ~number.to_s
+      end
+    end
+    this << Element.build("fo:inline") do |this|
+      this["line-height"] = LINE_HEIGHT
+      this << apply(element.each_xpath("title").first, "section.first-header")
+    end
+    this << Element.build("fo:leader") do |this|
+      this["margin-left"] = "0.3em"
+      this["margin-right"] = "0.3em"
+      this["color"] = BORDER_COLOR
+      this["leader-pattern"] = "rule"
+      this["rule-style"] = "dotted"
+      this["rule-thickness"] = "#{BORDER_WIDTH} * 2"
+      this["baseline-shift"] = "0.3em"
+    end
+    this << Element.build("fo:inline-container") do |this|
+      this["width"] = "4.5mm"
+      this["alignment-baseline"] = "central"
+      this << Element.build("fo:block") do |this|
+        this["font-family"] = SPECIAL_FONT_FAMILY
+        this["font-size"] = "1em"
+        this["line-height"] = "1"
+        this["text-align-last"] = "right"
+        this << Element.build("fo:page-number-citation") do |this|
+          this["ref-id"] = "section.top-#{number}"
+        end
+      end
+    end
+  end
   next this
 end
