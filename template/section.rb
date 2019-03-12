@@ -304,11 +304,9 @@ converter.add(["correct", "wrong"], ["section.head", "section.content"]) do |ele
   this << Element.build("fo:block") do |this|
     if scope.include?("content")
       this["space-before"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
-      this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
-      this["space-before.minimum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MINIMUM_RATIO}"
       this["space-after"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO}"
-      this["space-after.maximum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MAXIMUM_RATIO}"
-      this["space-after.minimum"] = "#{PARAGRAPH_SPACE} * #{BORDERED_SPACE_RATIO} * #{MINIMUM_RATIO}"
+      this.make_elastic("space-before")
+      this.make_elastic("space-after")
     end
     this["margin-left"] = "-2mm"
     this["margin-right"] = "-2mm"
@@ -408,11 +406,9 @@ converter.add(["p"], ["section.content"]) do |element|
   this = Nodes[]
   this << Element.build("fo:block") do |this|
     this["space-before"] = PARAGRAPH_SPACE
-    this["space-before.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
-    this["space-before.minimum"] = "#{PARAGRAPH_SPACE} * #{MINIMUM_RATIO}"
     this["space-after"] = PARAGRAPH_SPACE
-    this["space-after.maximum"] = "#{PARAGRAPH_SPACE} * #{MAXIMUM_RATIO}"
-    this["space-after.minimum"] = "#{PARAGRAPH_SPACE} * #{MINIMUM_RATIO}"
+    this.make_elastic("space-before")
+    this.make_elastic("space-after")
     this["line-height"] = LINE_HEIGHT
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"

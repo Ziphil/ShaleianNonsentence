@@ -3,6 +3,12 @@
 
 class Element
 
+  def make_elastic(clazz)
+    original_space = self[clazz]
+    self["#{clazz}.maximum"] = "(#{original_space}) * #{MAXIMUM_RATIO}"
+    self["#{clazz}.minimum"] = "(#{original_space}) * #{MINIMUM_RATIO}"
+  end
+
   def self.build_page_master(&block)
     this = Nodes[]
     this << Element.build("fo:simple-page-master") do |this|
