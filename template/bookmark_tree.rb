@@ -3,8 +3,19 @@
 
 converter.set("bookmark-tree") do |element|
   this = Nodes[]
+  this << call(element, "bookmark-tree.content-table")
   this << apply(element, "bookmark-tree.part")
   next this
+end
+
+converter.set("bookmark-tree.content-table") do |element|
+  this = Nodes[]
+  this << Element.build("fo:bookmark") do |this|
+    this["internal-destination"] = "content-table.top"
+    this << Element.build("fo:bookmark-title") do |this|
+      this << ~"目次"
+    end
+  end
 end
 
 converter.add(["part"], ["bookmark-tree.part"]) do |element|

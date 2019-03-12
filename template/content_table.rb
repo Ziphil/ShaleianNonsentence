@@ -4,6 +4,18 @@
 converter.set("content-table.page-master") do |element|
   this = Nodes[]
   this << Element.build_page_master do |this|
+    this["master-name"] = "content-table.first"
+    this << Element.build_region_body(:left) do |this|
+      this["region-name"] = "content-table.body"
+    end
+    this << Element.build_region_before do |this|
+      this["region-name"] = "content-table.first-header"
+    end
+    this << Element.build_region_after do |this|
+      this["region-name"] = "content-table.left-footer"
+    end
+  end
+  this << Element.build_page_master do |this|
     this["master-name"] = "content-table.left"
     this << Element.build_region_body(:left) do |this|
       this["region-name"] = "content-table.body"
@@ -25,6 +37,10 @@ converter.set("content-table.page-master") do |element|
     this["master-name"] = "content-table"
     this << Element.build("fo:repeatable-page-master-alternatives") do |this|
       this << Element.build("fo:conditional-page-master-reference") do |this|
+        this["master-reference"] = "content-table.first"
+        this["page-position"] = "first"
+      end
+      this << Element.build("fo:conditional-page-master-reference") do |this|
         this["master-reference"] = "content-table.left"
         this["odd-or-even"] = "even"
       end
@@ -43,6 +59,10 @@ converter.add(["content-table"], [""]) do |element|
     this["master-reference"] = "content-table"
     this["initial-page-number"] = "auto-even"
     this << Element.build("fo:static-content") do |this|
+      this["flow-name"] = "content-table.first-header"
+      this << call(element, "content-table.first-header")
+    end
+    this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "content-table.left-footer"
       this << call(element, "page-number", :left)
     end
@@ -56,6 +76,14 @@ converter.add(["content-table"], [""]) do |element|
         this << call(element, "content-table.main")
       end
     end
+  end
+  next this
+end
+
+converter.set("content-table.first-header") do |element|
+  this = Nodes[]
+  this << Element.build("fo:block-container") do |this|
+    this["id"] = "content-table.top"
   end
   next this
 end
