@@ -100,19 +100,29 @@ converter.add(["part"], ["content-table.part"]) do |element|
     this["space-after"] = CONTENT_TABLE_PART_SPACE
     this.make_elastic("space-before")
     this.make_elastic("space-after")
-    this << Element.build("fo:block-container") do |this|
-      this["margin-left"] = "0mm"
-      this["margin-right"] = "0mm"
-      this["padding-after"] = "1mm"
-      this["padding-left"] = "1mm"
-      this["padding-right"] = "1mm"
+    this << Element.build("fo:block") do |this|
       this["border-bottom-width"] = "0.5mm"
       this["border-bottom-color"] = BORDER_COLOR
       this["border-bottom-style"] = "solid"
-      this << Element.build("fo:block") do |this|
+      this << Element.build("fo:inline-container") do |this|
+        this["width"] = "6mm"
+        this["margin-right"] = "0.6em"
+        this["alignment-baseline"] = "central"
+        this << Element.build("fo:block") do |this|
+          this.reset_indent
+          this["font-family"] = SPECIAL_FONT_FAMILY
+          this["font-size"] = "3em"
+          this["color"] = BORDER_COLOR
+          this["line-height"] = "0"
+          this["text-align-last"] = "center"
+          this << ~number.to_s
+        end
+      end
+      this << Element.build("fo:inline") do |this|
         this["font-size"] = "1.2em"
         this["color"] = "black"
         this["line-height"] = "1"
+        this["baseline-shift"] = "0.5mm"
         this << ~title
       end
     end
