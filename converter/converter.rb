@@ -71,7 +71,7 @@ class Converter
 
   def apply_select(element, xpath, scope, *args)
     nodes = Nodes[]
-    element.each_xpath(xpath).each do |child|
+    element.each_xpath(xpath) do |child|
       case child
       when Element
         nodes << convert_element(child, scope, *args)
