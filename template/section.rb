@@ -31,7 +31,7 @@ converter.set("section.page-master") do |element|
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
     end
     this << Element.build_region_before do |this|
-      this["region-name"] = "section.right-header"
+      this["region-name"] = "section.header"
       this["extent"] = SECTION_HEADER_EXTENT
     end
     this << Element.build_region_after do |this|
@@ -45,7 +45,7 @@ converter.set("section.page-master") do |element|
       this["margin-top"] = SECTION_PAGE_TOP_SPACE
     end
     this << Element.build_region_before do |this|
-      this["region-name"] = "section.right-header"
+      this["region-name"] = "section.header"
       this["extent"] = SECTION_HEADER_EXTENT
     end
     this << Element.build_region_after do |this|
@@ -82,8 +82,8 @@ converter.add(["section"], [""]) do |element|
       this << call(element, "section.first-header")
     end
     this << Element.build("fo:static-content") do |this|
-      this["flow-name"] = "section.right-header"
-      this << call(element, "section.right-header")
+      this["flow-name"] = "section.header"
+      this << call(element, "section.header")
     end
     this << Element.build("fo:static-content") do |this|
       this["flow-name"] = "section.left-footer"
@@ -233,7 +233,7 @@ converter.set("section.first-header.id") do |element|
   next this
 end
 
-converter.set("section.right-header") do |element|
+converter.set("section.header") do |element|
   this = Nodes[]
   this << Element.build("fo:block-container") do |this|
     this["height"] = "#{SECTION_HEADER_EXTENT} + #{BLEED_SIZE}"
