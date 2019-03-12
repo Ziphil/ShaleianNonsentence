@@ -120,12 +120,15 @@ converter.add(["part"], ["content-table.part"]) do |element|
           this << ~number.to_s
         end
       end
-      this << Element.build("fo:inline") do |this|
-        this["font-size"] = "1.2em"
-        this["color"] = "black"
-        this["line-height"] = "1"
-        this["baseline-shift"] = "0.5mm"
-        this << ~title
+      this << Element.build("fo:basic-link") do |this|
+        this["internal-destination"] = "part.top-#{number}"
+        this << Element.build("fo:inline") do |this|
+          this["font-size"] = "1.2em"
+          this["color"] = "black"
+          this["line-height"] = "1"
+          this["baseline-shift"] = "0.5mm"
+          this << ~title
+        end
       end
     end
     this << Element.build("fo:block") do |this|
@@ -170,9 +173,12 @@ converter.add(["section"], ["content-table.section"]) do |element|
         this << ~number.to_s
       end
     end
-    this << Element.build("fo:inline") do |this|
-      this["line-height"] = LINE_HEIGHT
-      this << apply(element.each_xpath("title").first, "section.first-header")
+    this << Element.build("fo:basic-link") do |this|
+      this["internal-destination"] = "section.top-#{number}"
+      this << Element.build("fo:inline") do |this|
+        this["line-height"] = LINE_HEIGHT
+        this << apply(element.each_xpath("title").first, "section.first-header")
+      end
     end
     this << Element.build("fo:leader") do |this|
       this["margin-left"] = "0.3em"
