@@ -125,6 +125,7 @@ converter.add(["part"], ["content-table.part"]) do |element|
         this << Element.build("fo:inline") do |this|
           this["font-size"] = "1.2em"
           this["color"] = "black"
+          this["letter-spacing"] = "0.1em"
           this["line-height"] = "1"
           this["baseline-shift"] = "0.5mm"
           this << ~title
