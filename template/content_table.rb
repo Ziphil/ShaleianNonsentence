@@ -164,6 +164,7 @@ converter.add(["section"], ["content-table.section"]) do |element|
         this["font-family"] = SPECIAL_FONT_FAMILY
         this["font-size"] = "1.4em"
         this["color"] = "white"
+        this["letter-spacing"] = "-0.05em"
         this["line-height"] = "0"
         this["text-align-last"] = "center"
         this << ~number.to_s
