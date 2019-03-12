@@ -108,6 +108,8 @@ converter.add(["part"], ["content-table.part"]) do |element|
         this["width"] = "6mm"
         this["margin-right"] = "0.6em"
         this["alignment-baseline"] = "central"
+        this["relative-position"] = "relative"
+        this["top"] = "0.2mm"
         this << Element.build("fo:block") do |this|
           this.reset_indent
           this["font-family"] = SPECIAL_FONT_FAMILY
@@ -155,6 +157,8 @@ converter.add(["section"], ["content-table.section"]) do |element|
       this["width"] = "10mm"
       this["margin-right"] = "0.5em"
       this["alignment-baseline"] = "central"
+      this["relative-position"] = "relative"
+      this["top"] = "0.5mm"
       this << Element.build("fo:block") do |this|
         this.reset_indent
         this["font-family"] = SPECIAL_FONT_FAMILY
