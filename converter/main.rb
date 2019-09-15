@@ -1,10 +1,9 @@
 # coding: utf-8
 
 
-require 'pp'
-require 'fileutils'
-require 'rexml/document'
-require 'zenml'
+require 'bundler/setup'
+Bundler.require
+
 include REXML
 include Zenithal
 
@@ -15,9 +14,10 @@ $stdout.sync = true
 
 class WholeBookConverter
 
-  OUTPUT_PATH = "../out/main.fo"
-  MANUSCRIPT_DIR = "../manuscript"
-  TEMPLATE_DIR = "../template"
+  OUTPUT_PATH = "out/main.fo"
+  MANUSCRIPT_DIR = "manuscript"
+  TEMPLATE_DIR = "template"
+  FORMATTER_COMMAND = "cd out & AHFCmd -pgbar -x 3 -d main.fo -p @PDF -o document.pdf 2> error.txt"
 
   def save
     parser = create_parser
@@ -26,6 +26,7 @@ class WholeBookConverter
     File.open(OUTPUT_PATH, "w") do |file|
       formatter.write(converter.convert, file)
     end
+    Open3.pipeline(FORMATTER_COMMAND)
   end
 
   def create_parser(path = nil, main = true)
