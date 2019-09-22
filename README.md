@@ -33,7 +33,7 @@ XSL-FO ファイルを PDF ファイルにタイプセットするために [AH 
 ## 生成
 以下のコマンドを実行してください。
 ```
-bundle exec ruby converter/main.rb
+bundle exec ruby converter/main.rb -t
 ```
 
 ## その他

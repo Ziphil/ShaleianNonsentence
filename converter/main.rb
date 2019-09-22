@@ -17,15 +17,39 @@ class WholeBookConverter
   OUTPUT_PATH = "out/main.fo"
   MANUSCRIPT_DIR = "manuscript"
   TEMPLATE_DIR = "template"
-  FORMATTER_COMMAND = "cd out & AHFCmd -pgbar -x 3 -d main.fo -p @PDF -o document.pdf 2> error.txt"
+  TYPESET_COMMAND = "cd out & AHFCmd -pgbar -x 3 -d main.fo -p @PDF -o document.pdf 2> error.txt"
+  OPEN_COMMANDS = {
+    :sumatra => "SumatraPDF -reuse-instance out/document.pdf",
+    :formatter => "AHFormatter -s -d out/main.fo"
+  }
 
-  def save
+  def initialize(args)
+    options, rest_args = args.partition{|s| s =~ /^\-\w+$/}
+    flags = Hash.new{|h, s| h[s] = nil}
+    if options.include?("-t")
+      flags[:typeset] = true
+    end
+    if options.include?("-os")
+      flags[:open] = :sumatra
+    end
+    if options.include?("-of")
+      flags[:open] = :formatter
+    end
+    @flags = flags
+  end
+
+  def execute
     parser = create_parser
     converter = create_converter(parser.parse)
     formatter = create_formatter
     puts("")
     save_convert(converter, formatter)
-    save_typeset
+    if @flags[:typeset]
+      save_typeset
+    end
+    if @flags[:open]
+      open
+    end
   end
 
   def save_convert(converter, formatter)
@@ -37,16 +61,23 @@ class WholeBookConverter
 
   def save_typeset
     progress = {:format => 0, :render => 0}
-    Open3.popen3(FORMATTER_COMMAND) do |stdin, stdout, stderr, thread|
-      stdin.close
-      stdout.each_char do |char|
-        if char == "." || char == "-"
-          type = (char == ".") ? :format : :render
-          progress[type] += 1
-          print_progress("Typeset", progress)
-        end
+    command = TYPESET_COMMAND
+    stdin, stdout, stderr, thread = Open3.popen3(command)
+    stdin.close
+    stdout.each_char do |char|
+      if char == "." || char == "-"
+        type = (char == ".") ? :format : :render
+        progress[type] += 1
+        print_progress("Typeset", progress)
       end
     end
+    thread.join
+  end
+
+  def open
+    command = OPEN_COMMANDS[@flags[:open]]
+    stdin, stdout, stderr, thread = Open3.popen3(command)
+    stdin.close
   end
 
   def print_progress(type, progress = nil)
@@ -73,7 +104,7 @@ class WholeBookConverter
         import_path = attributes["src"]
         import_parser = create_parser(MANUSCRIPT_DIR + "/" + import_path, false)
         document = import_parser.parse
-        next [document.root]
+        next (attributes["expand"]) ? document.root.children : [document.root]
       end
     end
     return parser
@@ -99,5 +130,5 @@ class WholeBookConverter
 end
 
 
-whole_converter = WholeBookConverter.new
-whole_converter.save
+whole_converter = WholeBookConverter.new(ARGV)
+whole_converter.execute
