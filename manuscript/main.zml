@@ -8,6 +8,7 @@
   &import|src="part/grammar.zml"|>
 
   ## ?
+  &import|src="section/copula.zml"|>
   &import|src="section/adverb_prefix.zml"|>
   &import|src="section/verb_adverb.zml"|>
   &import|src="section/proper_noun_insertion.zml"|>
