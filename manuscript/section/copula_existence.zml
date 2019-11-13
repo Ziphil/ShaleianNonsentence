@@ -1,0 +1,45 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="copula-existence",rel="copula"|<
+  \title<{sal} を存在の意味で使うことはできない>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{\s<salat> a tel te sot vo kossax.}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{\s<qetat> a tel te sot vo kossax.}>
+        \ja<私は今学校にいる。>
+      >
+    >
+  >
+
+  \content<
+    \p<
+      シャレイア語の {sal} は、英語の be 動詞に相当する単語で、{a} 句のものが {e} 句のものや状態であることを表します。
+      重要なのは、{sal} にこれ以外の意味合いはないという点です。
+    >
+    \p<
+      英語の be 動詞には、場所を表す表現を伴ってその場所にいることを表す用法がありますが、シャレイア語の {sal} にはありません。
+    >
+    \wrong<
+      \li<
+        \sh<{\s<salat> a tel te sot vo kossax.}>
+      >
+    >
+    \p<
+      特定の場所に存在することを表したい場合は、{sal} ではなく {qet} を使います。
+    >
+    \correct<
+      \li<
+        \sh<{\s<qetat> a tel te sot vo kossax.}>
+        \ja<私は今学校にいる。>
+      >
+    >
+  >
+
+>
