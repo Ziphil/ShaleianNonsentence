@@ -1,0 +1,26 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="multiple-connective"|<
+  \title<3 つ以上の語句を繋げるにタデックは使えない>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{}>
+        \ja<>
+      >
+    >
+  >
+
+  \content<
+    \p<
+    >
+  >
+
+>

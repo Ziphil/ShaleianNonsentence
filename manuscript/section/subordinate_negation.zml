@@ -1,0 +1,28 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="subordinate-negation"|<
+  \title<主節の否定と従属節の否定では意味が異なる>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{}>
+        \ja<>
+      >
+    >
+  >
+
+  \content<
+    ## 英語では think などの従属節の否定は主節の否定にした方が自然
+    ## シャレイア語でそれをやると意味が変わる場合がある
+    \p<
+    >
+  >
+
+>

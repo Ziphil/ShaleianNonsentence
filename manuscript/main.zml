@@ -10,11 +10,12 @@
   ## ?
   &import|src="section/copula.zml"|>
   &import|src="section/adverb_prefix.zml"|>
+  &import|src="section/interrogative_connective.zml"|>
   &import|src="section/verb_adverb.zml"|>
   &import|src="section/proper_noun_insertion.zml"|>
   &import|src="section/vocative.zml"|>
   &import|src="section/floating_preposition.zml"|>
-  ## 連結詞か助接詞かで pa の有無が変わる話とか 
+  &import|src="section/multiple_connective.zml"|>
 
   &import|src="part/usage.zml"|>
 
@@ -24,10 +25,13 @@
   &import|src="section/transitive_causative.zml"|>
   &import|src="section/subject_omission.zml"|>
   &import|src="section/imperative_omission.zml"|>
+  &import|src="section/subordinate_omission.zml"|>
   &import|src="section/alternative_connective.zml"|>
   &import|src="section/choice_connective.zml"|>
   &import|src="section/ability_condition.zml"|>
+  &import|src="section/plural.zml"|>
   ## 全部否定と部分否定を絡めた何かとか
+  &import|src="section/subordinate_negation.zml"|>
 
   ## 助接詞
   &import|src="section/particle_mismatch.zml"|>

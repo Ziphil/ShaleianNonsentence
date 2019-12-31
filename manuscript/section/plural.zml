@@ -1,0 +1,27 @@
+\zml?|version="1.0"|>
+\xml?|version="1.0",encoding="UTF-8"|>
+
+\section|id="plural"|<
+  \title<複数を表す {véf} はその単語で表される複数のものを表す>
+
+  \head<
+    \wrong<
+      \li<
+        \sh<{}>
+      >
+    >
+    \correct<
+      \li<
+        \sh<{}>
+        \ja<>
+      >
+    >
+  >
+
+  \content<
+    ## sakil avéf は複数個のリンゴであってリンゴとミカンの集まりは表せない
+    \p<
+    >
+  >
+
+>
