@@ -79,6 +79,6 @@ end
 
 converter.add_default(nil) do |text|
   this = Nodes[]
-  this << ~text.to_s
+  this << ~text.value
   next this
 end

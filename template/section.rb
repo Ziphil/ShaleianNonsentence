@@ -421,6 +421,6 @@ end
 
 converter.add(nil, ["section.content.p"]) do |text|
   this = Nodes[]
-  this << ~text.to_s.gsub(/(?<=。)\s*\n\s*/, "")
+  this << ~text.value.gsub(/(?<=。)\s*\n\s*/, "")
   next this
 end
