@@ -123,7 +123,7 @@ converter.set("section.first-header") do |element|
     this["margin-top"] = "-1 * #{BLEED_SIZE}"
     this["margin-left"] = "-1 * #{BLEED_SIZE}"
     this["margin-right"] = "-1 * #{BLEED_SIZE}"
-    this["background-image"] = "url('../material/section_first_header.svg')"
+    this["background-image"] = "url('../document/material/section_first_header.svg')"
     this["background-position-vertical"] = "-3mm + #{BLEED_SIZE}"
     this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
@@ -240,7 +240,7 @@ converter.set("section.header") do |element|
     this["margin-top"] = "-1 * #{BLEED_SIZE}"
     this["margin-left"] = "-1 * #{BLEED_SIZE}"
     this["margin-right"] = "-1 * #{BLEED_SIZE}"
-    this["background-image"] = "url('../material/section_header.svg')"
+    this["background-image"] = "url('../document/material/section_header.svg')"
     this["background-position-vertical"] = "-3mm + #{BLEED_SIZE}"
     this["background-position-horizontal"] = "-3mm + #{BLEED_SIZE}"
     this["background-repeat"] = "no-repeat"
@@ -283,7 +283,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
       this["absolute-position"] = "absolute"
       this << Element.build("fo:block") do |this|
         this << Element.build("fo:external-graphic") do |this|
-          this["src"] = "url('../material/wrong_badge.svg')"
+          this["src"] = "url('../document/material/wrong_badge.svg')"
         end
       end
     end
@@ -293,7 +293,7 @@ converter.add(["wrong"], ["section.head"]) do |element|
     this["font-size"] = "0em"
     this["text-align"] = "center"
     this << Element.build("fo:external-graphic") do |this|
-      this["src"] = "url('../material/wrong_arrow.svg')"
+      this["src"] = "url('../document/material/wrong_arrow.svg')"
     end
   end
   next this
@@ -342,9 +342,9 @@ converter.add(["sh"], ["section.head.example.li", "section.content.example.li"])
     this << Element.build("fo:external-graphic") do |this|
       this["margin-right"] = "0.4em"
       if type == :wrong
-        this["src"] = "url('../material/wrong_mark.svg')"
+        this["src"] = "url('../document/material/wrong_mark.svg')"
       else
-        this["src"] = "url('../material/correct_mark.svg')"
+        this["src"] = "url('../document/material/correct_mark.svg')"
       end
     end
     this << apply(element, scope + ".sh", type)
@@ -361,7 +361,7 @@ converter.add(["ja"], ["section.head.example.li", "section.content.example.li"])
     this << Element.build("fo:external-graphic") do |this|
       this["margin-right"] = "0.4em"
       this["baseline-shift"] = "0.1em"
-      this["src"] = "url('../material/translation_arrow.svg')"
+      this["src"] = "url('../document/material/translation_arrow.svg')"
     end
     this << apply(element, scope + ".ja", type)
   end
@@ -392,7 +392,7 @@ converter.add(["content"], ["section"]) do |element|
     this["margin-left"] = "-3mm"
     this["margin-right"] = "-3mm"
     this << Element.build("fo:external-graphic") do |this|
-      this["src"] = "url('../material/content_separator.svg')"
+      this["src"] = "url('../document/material/content_separator.svg')"
     end
   end
   this << Element.build("fo:block") do |this|

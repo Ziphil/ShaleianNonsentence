@@ -137,7 +137,7 @@ converter.add(["part"], ["content-table.part"]) do |element|
       this["padding-before"] = "1mm"
       this["padding-after"] = "1mm"
       this["padding-right"] = "0.5mm"
-      this["background-image"] = "url('../material/content_table_bar.svg')"
+      this["background-image"] = "url('../document/material/content_table_bar.svg')"
       this["background-repeat"] = "no-repeat"
       this["background-position-vertical"] = "bottom"
       this << apply_select(element, "following-sibling::section[count(preceding-sibling::part) = #{number}]", "content-table.section")
