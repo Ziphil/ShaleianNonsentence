@@ -1,5 +1,5 @@
-\zml?|version="1.0"|>
-\xml?|version="1.0",encoding="UTF-8"|>
+\zml?|version="1.1"|;
+\xml?|version="1.0",encoding="UTF-8"|;
 
 \section|id="choice-connective",rel="alternative-connective"|<
   \title<選択肢を表す {ve} 句では連結詞に {o} を用いる>

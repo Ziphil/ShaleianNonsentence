@@ -1,5 +1,5 @@
-\zml?|version="1.0"|>
-\xml?|version="1.0",encoding="UTF-8"|>
+\zml?|version="1.1"|;
+\xml?|version="1.0",encoding="UTF-8"|;
 
 \section|id="subordinate-omission",rel="subject-omission,imperative-omission"|<
   \title<従属節では主語を省略できない>

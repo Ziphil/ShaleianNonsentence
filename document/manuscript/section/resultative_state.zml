@@ -1,5 +1,5 @@
-\zml?|version="1.0"|>
-\xml?|version="1.0",encoding="UTF-8"|>
+\zml?|version="1.1"|;
+\xml?|version="1.0",encoding="UTF-8"|;
 
 \section|id="resultative-state",rel="resultative-object,action-state"|<
   \title<新しく生じるものには {qe} を使い変化後の状態には {se} を使う>
