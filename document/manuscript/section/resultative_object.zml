@@ -1,7 +1,7 @@
 \zml?|version="1.1"|;
 \xml?|version="1.0",encoding="UTF-8"|;
 
-\section|id="resultative-object",rel="resultative-state"|<
+\section|id="resultative-object"|<
   \title<結果目的語には {qe} を用いる>
 
   \head<
@@ -80,6 +80,10 @@
         \ja<彼は娘のためにピンクのセーターを作った。>
       >
     >
+  >
+
+  \relation<
+    \li|ref="resultative-state"|;
   >
 
 >

@@ -1,7 +1,7 @@
 \zml?|version="1.1"|;
 \xml?|version="1.0",encoding="UTF-8"|;
 
-\section|id="subject-omission",rel="imperative-omission,subordinate-omission"|<
+\section|id="subject-omission"|<
   \title<主語の {tel} や {loc} は基本的に省略できない>
 
   \head<
@@ -70,6 +70,11 @@
       この文には主語がなく、したがって「誰かがコップをジュースで満たした状態である」という意味で解釈されます。
       この文が述べたいことは、コップがジュースで満たされていることであって、満たしたのが誰かについては問題にしていないので、まさにこの解釈で良いのです。
     >
+  >
+
+  \relation<
+    \li|ref="imperative-omission"|;
+    \li|ref="subordinate-omission"|;
   >
 
 >

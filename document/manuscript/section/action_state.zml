@@ -1,7 +1,7 @@
 \zml?|version="1.1"|;
 \xml?|version="1.0",encoding="UTF-8"|;
 
-\section|id="action-state",rel="resultative-state"|<
+\section|id="action-state"|<
   \title<動作中や動作後の状態は {se} で表す>
 
   \head<
@@ -21,6 +21,10 @@
   \content<
     \p<
     >
+  >
+
+  \relation<
+    \li|ref="resultative-state"|;
   >
 
 >

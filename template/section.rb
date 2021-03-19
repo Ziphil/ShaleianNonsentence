@@ -129,9 +129,6 @@ converter.set("section.first-header") do |element|
     this["background-repeat"] = "no-repeat"
     this << call(element, "section.first-header.number", number)
     this << call(element, "section.first-header.title")
-    unless link_numbers.empty?
-      this << call(element, "section.first-header.relation", link_numbers)
-    end
     if DEBUG
       this << call(element, "section.first-header.id")
     end

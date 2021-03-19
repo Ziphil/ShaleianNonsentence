@@ -1,7 +1,7 @@
 \zml?|version="1.1"|;
 \xml?|version="1.0",encoding="UTF-8"|;
 
-\section|id="subordinate-omission",rel="subject-omission,imperative-omission"|<
+\section|id="subordinate-omission"|<
   \title<従属節では主語を省略できない>
 
   \head<
@@ -22,6 +22,11 @@
     ## シャレイア語には to 不定詞がないので従属節でも主語は省略できない
     \p<
     >
+  >
+
+  \relation<
+    \li|ref="subject-omission"|;
+    \li|ref="imperative-omission"|;
   >
 
 >

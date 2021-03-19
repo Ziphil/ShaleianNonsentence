@@ -1,7 +1,7 @@
 \zml?|version="1.1"|;
 \xml?|version="1.0",encoding="UTF-8"|;
 
-\section|id="imperative-omission",rel="subject-omission,subordinate-omission"|<
+\section|id="imperative-omission"|<
   \title<命令文での命令対象を表す {loc} は省略できない>
 
   \head<
@@ -57,6 +57,11 @@
         \ja<明日はゲームをして遊びましょう。>
       >
     >
+  >
+
+  \relation<
+    \li|ref="subject-omission"|;
+    \li|ref="subordinate-omission"|;
   >
 
 >
