@@ -7,6 +7,8 @@
 
   ## 動詞の用法 (時制と相と自他)
   &import|src="part/dummy.zml"|;
+  &import|src="section/perfect_punctual.zml"|;
+  &import|src="section/transitive_patientive.zml"|;
   &import|src="section/transitive_causative.zml"|;
   &import|src="section/habit.zml"|;
 
