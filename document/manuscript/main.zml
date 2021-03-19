@@ -5,35 +5,13 @@
 
   \content-table;
 
-  &import|src="part/grammar.zml"|;
-
-  ## ?
-  &import|src="section/copula.zml"|;
-  &import|src="section/adverb_prefix.zml"|;
-  &import|src="section/interrogative_connective.zml"|;
-  &import|src="section/verb_adverb.zml"|;
-  &import|src="section/proper_noun_insertion.zml"|;
-  &import|src="section/vocative.zml"|;
-  &import|src="section/floating_preposition.zml"|;
-  &import|src="section/multiple_connective.zml"|;
-
-  &import|src="part/usage.zml"|;
-
-  ## ?
-  &import|src="section/copula_existence.zml"|;
-  &import|src="section/habit.zml"|;
+  ## 動詞の用法 (時制と相と自他)
+  &import|src="part/dummy.zml"|;
   &import|src="section/transitive_causative.zml"|;
-  &import|src="section/subject_omission.zml"|;
-  &import|src="section/imperative_omission.zml"|;
-  &import|src="section/subordinate_omission.zml"|;
-  &import|src="section/alternative_connective.zml"|;
-  &import|src="section/choice_connective.zml"|;
-  &import|src="section/ability_condition.zml"|;
-  &import|src="section/plural.zml"|;
-  ## 全部否定と部分否定を絡めた何かとか
-  &import|src="section/subordinate_negation.zml"|;
+  &import|src="section/habit.zml"|;
 
-  ## 助接詞
+  ## 助接辞
+  &import|src="part/particle.zml"|;
   &import|src="section/particle_mismatch.zml"|;
   &import|src="section/noun_modifying_particle.zml"|;
   &import|src="section/action_state.zml"|;
@@ -41,7 +19,32 @@
   &import|src="section/resultative_state.zml"|;
   &import|src="section/purpose_person.zml"|;
   &import|src="section/unit_noun.zml"|;
+  &import|src="section/vocative.zml"|;
+  &import|src="section/floating_preposition.zml"|;
 
+  ## 語句の省略
+  &import|src="part/dummy.zml"|;
+  &import|src="section/subject_omission.zml"|;
+  &import|src="section/imperative_omission.zml"|;
+  &import|src="section/subordinate_omission.zml"|;
+
+  ## ?
+  &import|src="part/dummy.zml"|;
+  &import|src="section/copula.zml"|;
+  &import|src="section/adverb_prefix.zml"|;
+  &import|src="section/interrogative_connective.zml"|;
+  &import|src="section/verb_adverb.zml"|;
+  &import|src="section/proper_noun_insertion.zml"|;
+  &import|src="section/multiple_connective.zml"|;
+  &import|src="section/alternative_connective.zml"|;
+  &import|src="section/copula_existence.zml"|;
+  &import|src="section/choice_connective.zml"|;
+  &import|src="section/ability_condition.zml"|;
+  &import|src="section/plural.zml"|;
+  ## 全部否定と部分否定を絡めた何かとか
+  &import|src="section/subordinate_negation.zml"|;
+ 
+  ## レイアウトテスト
   &import|src="part/layout_test.zml"|;
   &import|src="section/layout_test.zml"|;
 
