@@ -1,10 +1,10 @@
 # coding: utf-8
 
 
-SECTION_FIRST_PAGE_TOP_SPACE = "50mm"
-SECTION_FIRST_HEADER_EXTENT = "35mm"
-SECTION_PAGE_TOP_SPACE = "23mm"
-SECTION_HEADER_EXTENT = "13mm"
+SECTION_FIRST_PAGE_TOP_SPACE = "45mm"
+SECTION_FIRST_HEADER_EXTENT = "30mm"
+SECTION_PAGE_TOP_SPACE = "22mm"
+SECTION_HEADER_EXTENT = "10mm"
 SECTION_CONTENT_SPACE = "2em"
 SECTION_SEPARATOR_SPACE = "1em"
 
@@ -143,7 +143,7 @@ converter.set("section.first-header.number") do |element, number|
   this = Nodes[]
   this << Element.build("fo:block-container") do |this|
     this["width"] = "30mm"
-    this["top"] = "20mm + #{BLEED_SIZE}"
+    this["top"] = "16mm + #{BLEED_SIZE}"
     this["left"] = "0mm + #{BLEED_SIZE}"
     this["font-family"] = SPECIAL_FONT_FAMILY
     this["font-size"] = "4em"
@@ -168,10 +168,10 @@ converter.set("section.first-header.title") do |element|
     this["width"] = "85mm"
     this["block-progression-dimension"] = "0mm"
     this["block-progression-dimension.maximum"] = "100%"
-    this["bottom"] = "8mm"
+    this["bottom"] = "3mm"
     this["left"] = "43mm + #{BLEED_SIZE}"
     this["font-size"] = "1.6em"
-    this["line-height"] = "1.1"
+    this["line-height"] = "1.2"
     this["text-align"] = "justify"
     this["axf:text-justify-trim"] = "punctuation ideograph inter-word"
     this["axf:avoid-widow-words"] = "true"
