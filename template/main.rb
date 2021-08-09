@@ -3,11 +3,11 @@
 
 DEBUG = true
 
-EUROPIAN_FONT_FAMILY = "Linux Libertine"
+EUROPIAN_FONT_FAMILY = "Linux Libertine G"
 JAPANESE_FONT_FAMILY = "源ノ明朝"
 EUROPIAN_SHALEIA_FONT_FAMILY = "FreeSans"
 JAPANESE_SHALEIA_FONT_FAMILY = "源ノ角ゴシック"
-SPECIAL_FONT_FAMILY = "Gill Sans Nova Cond Bold"
+SPECIAL_FONT_FAMILY = "Gill Sans Nova Cn Book"
 
 FONT_SIZE = "9pt"
 SHALEIA_FONT_SIZE = "95%"

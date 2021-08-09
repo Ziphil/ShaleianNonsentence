@@ -114,6 +114,7 @@ converter.add(["part"], ["content-table.part"]) do |element|
           this.reset_indent
           this["font-family"] = SPECIAL_FONT_FAMILY
           this["font-size"] = "3em"
+          this["font-weight"] = "bold"
           this["color"] = BORDER_COLOR
           this["line-height"] = "0"
           this["text-align-last"] = "center"
@@ -167,6 +168,7 @@ converter.add(["section"], ["content-table.section"]) do |element|
         this.reset_indent
         this["font-family"] = SPECIAL_FONT_FAMILY
         this["font-size"] = "1.4em"
+        this["font-weight"] = "bold"
         this["color"] = "white"
         this["letter-spacing"] = "-0.05em"
         this["line-height"] = "0"
@@ -196,6 +198,7 @@ converter.add(["section"], ["content-table.section"]) do |element|
       this << Element.build("fo:block") do |this|
         this["font-family"] = SPECIAL_FONT_FAMILY
         this["font-size"] = "1em"
+        this["font-weight"] = "bold"
         this["line-height"] = "1"
         this["text-align-last"] = "right"
         this << Element.build("fo:page-number-citation") do |this|

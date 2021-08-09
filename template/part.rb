@@ -84,6 +84,7 @@ converter.add(["title"], ["part"]) do |element|
     this["margin-bottom"] = "-7mm"
     this["font-family"] = SPECIAL_FONT_FAMILY
     this["font-size"] = "7em"
+    this["font-weight"] = "bold"
     this["color"] = BORDER_COLOR
     this["line-height"] = "1"
     this["text-align"] = "center"

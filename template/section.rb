@@ -144,6 +144,7 @@ converter.set("section.first-header.number") do |element, number|
     this["left"] = "0mm + #{BLEED_SIZE}"
     this["font-family"] = SPECIAL_FONT_FAMILY
     this["font-size"] = "4em"
+    this["font-weight"] = "bold"
     this["color"] = "white"
     this["letter-spacing"] = "-0.05em"
     this["text-align"] = "center"
@@ -205,6 +206,7 @@ converter.set("section.first-header.relation") do |element, link_numbers|
           this << Element.build("fo:inline") do |this|
             this["font-family"] = SPECIAL_FONT_FAMILY
             this["font-size"] = "1.5em"
+            this["font-weight"] = "bold"
             this["letter-spacing"] = "-0.05em"
             this << ~link_number.to_s
           end

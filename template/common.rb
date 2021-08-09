@@ -19,6 +19,7 @@ converter.set("page-number") do |element, position|
       end
       this["font-family"] = SPECIAL_FONT_FAMILY
       this["font-size"] = "1.1em"
+      this["font-weight"] = "bold"
       this["color"] = "white"
       this["text-align"] = "center"
       this["axf:border-top-left-radius"] = "2mm"
