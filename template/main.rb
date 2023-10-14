@@ -3,14 +3,14 @@
 
 DEBUG = true
 
-EUROPIAN_FONT_FAMILY = "Linux Libertine G"
-JAPANESE_FONT_FAMILY = "源ノ明朝"
-EUROPIAN_SHALEIA_FONT_FAMILY = "FreeSans"
-JAPANESE_SHALEIA_FONT_FAMILY = "源ノ角ゴシック"
+EUROPIAN_FONT_FAMILY = "Brill"
+JAPANESE_FONT_FAMILY = "Yu Mincho"
+EUROPIAN_SHALEIA_FONT_FAMILY = "Inter"
+JAPANESE_SHALEIA_FONT_FAMILY = "Yu Gothic Medium"
 SPECIAL_FONT_FAMILY = "Gill Sans Nova Cn Book"
 
 FONT_SIZE = "9pt"
-SHALEIA_FONT_SIZE = "95%"
+SHALEIA_FONT_SIZE = "100%"
 LINE_HEIGHT = "1.6"
 
 PAGE_WIDTH = "148mm"
@@ -44,6 +44,7 @@ converter.add(["root"], [""]) do |element|
     this["xml:lang"] = "ja"
     this["font-family"] = FONT_FAMILY
     this["font-size"] = FONT_SIZE
+    this["font-variant"] = "lining-nums"
     this["axf:ligature-mode"] = "all"
     this << Element.build("fo:layout-master-set") do |this|
       this << call(element, "section.page-master")
